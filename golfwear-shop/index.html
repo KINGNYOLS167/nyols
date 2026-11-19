@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nyols Golf — Curated Golf Apparel</title>
+  <meta name="description" content="Golf polos, arm sleeves, caps, gloves and layers from FootJoy, Titleist, Callaway, TaylorMade, PING, Honma, PUMA Golf and adidas Golf. Shop safely through Tokopedia.">
+  <meta name="theme-color" content="#183a2c">
+  <meta property="og:title" content="Nyols Golf — Curated Golf Apparel">
+  <meta property="og:description" content="Best-selling golf apparel by brand and category. Checkout on Tokopedia.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap">
+</head>
+<body data-page="home">
+  <main id="main">
+    <section class="hero" data-hero>
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow" data-hero-line>Curated golf apparel · Indonesia</p>
+          <h1 class="hero__title" data-hero-line>Dressed for the<br><em>first tee.</em></h1>
+          <p class="hero__lede" data-hero-line>Tour polos, cooling arm sleeves, caps and gloves from the brands golfers trust — ranked by what our customers buy most.</p>
+          <div class="hero__ctas" data-hero-line>
+            <a class="btn btn--lg" href="shop.html?sort=bestselling">Shop Best Sellers</a>
+            <a class="btn btn--lg btn--ghost" data-store-link target="_blank" rel="noopener noreferrer">Our Tokopedia Store</a>
+          </div>
+          <dl class="hero__stats" data-hero-line data-hero-stats></dl>
+        </div>
+        <div class="hero__feature" data-hero-feature></div>
+      </div>
+    </section>
+
+    <section class="section" id="best-sellers" aria-labelledby="best-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Ranked by units sold</p>
+            <h2 id="best-title">Best Sellers</h2>
+          </div>
+          <div class="tabs" role="tablist" aria-label="Filter best sellers" data-best-tabs></div>
+        </div>
+        <div class="grid" data-best-grid role="tabpanel" aria-labelledby="best-title"></div>
+        <p class="section-foot"><a class="link-arrow" href="shop.html?sort=bestselling">See every product by popularity</a></p>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="categories" aria-labelledby="cat-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Shop by category</p>
+            <h2 id="cat-title">Find your fit</h2>
+            <p class="lede">Clothing, sleeves and gear — each category sorted with the best sellers first.</p>
+          </div>
+          <a class="link-arrow" href="shop.html">View all products</a>
+        </div>
+        <div class="cat-grid" data-cat-grid></div>
+      </div>
+    </section>
+
+    <section class="section" id="brands" aria-labelledby="brand-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Shop by brand</p>
+            <h2 id="brand-title">Every brand, every category</h2>
+            <p class="lede">Pick a brand, then narrow down to clothing, arm sleeves, headwear or gloves.</p>
+          </div>
+        </div>
+        <div class="brand-tabs" role="tablist" aria-label="Brands" data-brand-tabs></div>
+        <div class="brand-panel" role="tabpanel" data-brand-panel tabindex="-1"></div>
+      </div>
+    </section>
+
+    <section class="section section--tight section--alt" aria-labelledby="new-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Fresh &amp; reduced</p>
+            <h2 id="new-title">New arrivals &amp; offers</h2>
+          </div>
+          <a class="link-arrow" href="shop.html?sort=newest">Shop newest</a>
+        </div>
+        <div class="grid" data-new-grid></div>
+      </div>
+    </section>
+
+    <section class="order" id="how-to-order" aria-labelledby="order-title">
+      <div class="container order__grid">
+        <div>
+          <p class="eyebrow eyebrow--light">How to order</p>
+          <h2 id="order-title">Browse here.<br>Check out on Tokopedia.</h2>
+          <p class="order__lede">Every product links straight to our Tokopedia listing, so you pay with the methods you already use and every order is covered by Tokopedia's buyer protection.</p>
+          <a class="btn btn--tokopedia btn--lg" data-store-link target="_blank" rel="noopener noreferrer">Open our Tokopedia store</a>
+        </div>
+        <ol class="steps">
+          <li><span class="steps__n">01</span><div><h3>Choose your style</h3><p>Filter by brand, category, size and price. Best sellers are always listed first.</p></div></li>
+          <li><span class="steps__n">02</span><div><h3>Tap “Buy on Tokopedia”</h3><p>You land on the exact listing. Pick your size and colour there.</p></div></li>
+          <li><span class="steps__n">03</span><div><h3>Pay and track safely</h3><p>Checkout with Tokopedia payments, vouchers and shipping, with tracked delivery to your door.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--tight" aria-label="Why shop with us">
+      <div class="container promise" data-promise>
+        <div class="promise__item" data-reveal>
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="m9 12 2 2 4-4" stroke-linecap="round"/></svg>
+          <h3>Protected checkout</h3><p>Payment held by Tokopedia until your order arrives.</p>
+        </div>
+        <div class="promise__item" data-reveal>
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <h3>Made for tropical rounds</h3><p>Cooling, quick-dry and UPF fabrics chosen for heat and humidity.</p>
+        </div>
+        <div class="promise__item" data-reveal>
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h12"/></svg>
+          <h3>Sorted the smart way</h3><p>By brand, by category, by size — with best sellers on top.</p>
+        </div>
+        <div class="promise__item" data-reveal>
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.3L4 20Z"/></svg>
+          <h3>Size help on chat</h3><p>Not sure on fit? Message us on Tokopedia before you buy.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/src/pages/home.js"></script>
+</body>
+</html>

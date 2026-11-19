@@ -1,5 +1,13 @@
 # nyols
 
+## Projects
+
+| Folder | What it is |
+|---|---|
+| [`golfwear-shop/`](golfwear-shop/README.md) | Golf-apparel storefront (best sellers first, brand and category sorting, Tokopedia checkout) plus an Excel / Google Sheets finance workbook. `cd golfwear-shop && npm install && npm run dev` |
+
+## Skills
+
 Personal Claude Code skills. Install by copying into `~/.claude/skills/`:
 
 ```bash
