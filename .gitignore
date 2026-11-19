@@ -4,3 +4,6 @@
 # Product photos pulled from the Tokopedia store; regenerate with
 # golfwear/scripts/download_images.py after a fresh scrape
 golfwear/public/img/products/
+
+# npm installs
+node_modules/
