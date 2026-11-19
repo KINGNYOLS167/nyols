@@ -60,6 +60,9 @@ npm run preview
 
 ## Put it online
 
+**Live: https://golfwear.vercel.app** (Vercel project `golfwear`). How it's deployed, and how to
+redeploy after a push: `../deploy/vercel/README.md`.
+
 `npm run build` writes a static site to `dist/`. Any static host serves it: Vercel, Netlify and
 Cloudflare Pages can all build it straight from this folder (build command `npm run build`,
 output folder `dist`).
