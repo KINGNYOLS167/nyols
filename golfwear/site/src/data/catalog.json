@@ -1,0 +1,211 @@
+{
+  "_note": "SAMPLE own-label catalogue. Replace names, prices, colours, photos and tokopediaUrl with your real GOLFWEAR listings before launch, then set sample to false.",
+  "products": [
+    {
+      "id": "uv-sleeve-classic",
+      "sample": true,
+      "rank": 1,
+      "category": "sleeves",
+      "sleeve": "arm",
+      "kind": "classic",
+      "name": { "id": "Arm Sleeve UV Classic", "en": "UV Arm Sleeve Classic" },
+      "blurb": {
+        "id": "Pelindung lengan ringan untuk 18 hole di bawah matahari. Satu pasang, kiri dan kanan.",
+        "en": "A light sleeve that keeps the sun off for all 18 holes. Sold as a left and right pair."
+      },
+      "price": 79000,
+      "colors": [
+        { "key": "white", "name": { "id": "Putih", "en": "White" }, "hex": "#F4F4F1" },
+        { "key": "black", "name": { "id": "Hitam", "en": "Black" }, "hex": "#1E2120" },
+        { "key": "grey", "name": { "id": "Abu-abu", "en": "Grey" }, "hex": "#A7ACA9" }
+      ],
+      "sizes": ["M", "L", "XL"],
+      "specs": "sleeve"
+    },
+    {
+      "id": "cool-touch-sleeve",
+      "sample": true,
+      "rank": 2,
+      "category": "sleeves",
+      "sleeve": "arm",
+      "kind": "cool",
+      "name": { "id": "Arm Sleeve Cool Touch", "en": "Cool Touch Arm Sleeve" },
+      "blurb": {
+        "id": "Rajutan yang terasa dingin di kulit, untuk siang paling terik. Satu pasang, kiri dan kanan.",
+        "en": "A knit that feels cool on the skin, for the hottest afternoons. Sold as a left and right pair."
+      },
+      "price": 95000,
+      "colors": [
+        { "key": "white", "name": { "id": "Putih", "en": "White" }, "hex": "#F4F4F1" },
+        { "key": "sage", "name": { "id": "Sage", "en": "Sage" }, "hex": "#A9BCAB" },
+        { "key": "navy", "name": { "id": "Navy", "en": "Navy" }, "hex": "#22304B" }
+      ],
+      "sizes": ["M", "L", "XL"],
+      "specs": "sleeve"
+    },
+    {
+      "id": "fairway-polo",
+      "sample": true,
+      "rank": 3,
+      "category": "polo-men",
+      "sleeve": "short",
+      "kind": "plain",
+      "name": { "id": "Polo Fairway", "en": "Fairway Polo" },
+      "blurb": {
+        "id": "Polo andalan kami: jersey stretch yang cepat kering, potongan reguler, logo G di dada kiri.",
+        "en": "Our everyday polo: quick-dry stretch jersey, a regular fit and the G on the left chest."
+      },
+      "price": 350000,
+      "colors": [
+        { "key": "fairway", "name": { "id": "Hijau fairway", "en": "Fairway green" }, "hex": "#1E4D3B" },
+        { "key": "white", "name": { "id": "Putih", "en": "White" }, "hex": "#F6F5F1" },
+        { "key": "navy", "name": { "id": "Navy", "en": "Navy" }, "hex": "#22304B" }
+      ],
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "specs": "polo"
+    },
+    {
+      "id": "womens-fairway-polo",
+      "sample": true,
+      "rank": 4,
+      "category": "polo-women",
+      "sleeve": "short",
+      "kind": "women",
+      "name": { "id": "Polo Fairway Wanita", "en": "Women's Fairway Polo" },
+      "blurb": {
+        "id": "Potongan yang lebih pas di badan, dengan bahan stretch yang sama dan kerah yang lebih kecil.",
+        "en": "A closer cut in the same stretch fabric, with a smaller collar."
+      },
+      "price": 350000,
+      "colors": [
+        { "key": "white", "name": { "id": "Putih", "en": "White" }, "hex": "#F6F5F1" },
+        { "key": "blush", "name": { "id": "Blush", "en": "Blush" }, "hex": "#E9C7C1" },
+        { "key": "fairway", "name": { "id": "Hijau fairway", "en": "Fairway green" }, "hex": "#1E4D3B" }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "specs": "polo"
+    },
+    {
+      "id": "signature-sleeve",
+      "sample": true,
+      "rank": 5,
+      "category": "sleeves",
+      "sleeve": "arm",
+      "kind": "signature",
+      "name": { "id": "Arm Sleeve Signature", "en": "Signature Arm Sleeve" },
+      "blurb": {
+        "id": "Tulisan GOLFWEAR memanjang di lengan bawah. Satu pasang, kiri dan kanan.",
+        "en": "The GOLFWEAR wordmark runs along the forearm. Sold as a left and right pair."
+      },
+      "price": 109000,
+      "colors": [
+        { "key": "white", "name": { "id": "Putih", "en": "White" }, "hex": "#F4F4F1" },
+        { "key": "black", "name": { "id": "Hitam", "en": "Black" }, "hex": "#1E2120" }
+      ],
+      "sizes": ["M", "L", "XL"],
+      "specs": "sleeve"
+    },
+    {
+      "id": "clubhouse-pique-polo",
+      "sample": true,
+      "rank": 6,
+      "category": "polo-men",
+      "sleeve": "short",
+      "kind": "pique",
+      "name": { "id": "Polo Piqué Clubhouse", "en": "Clubhouse Piqué Polo" },
+      "blurb": {
+        "id": "Rajutan piqué bertekstur yang tetap rapi dari tee pertama sampai clubhouse.",
+        "en": "A textured piqué knit that looks sharp from the first tee to the clubhouse."
+      },
+      "price": 365000,
+      "colors": [
+        { "key": "ivory", "name": { "id": "Gading", "en": "Ivory" }, "hex": "#EDE6D7" },
+        { "key": "sage", "name": { "id": "Sage", "en": "Sage" }, "hex": "#A9BCAB" }
+      ],
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "specs": "pique"
+    },
+    {
+      "id": "tour-stripe-polo",
+      "sample": true,
+      "rank": 7,
+      "category": "polo-men",
+      "sleeve": "short",
+      "kind": "stripe",
+      "name": { "id": "Polo Tour Stripe", "en": "Tour Stripe Polo" },
+      "blurb": {
+        "id": "Garis horizontal klasik, kerah polos, logo G di dada kiri.",
+        "en": "Classic horizontal stripes, a plain collar and the G on the left chest."
+      },
+      "price": 375000,
+      "colors": [
+        { "key": "navy-stripe", "name": { "id": "Navy bergaris", "en": "Navy stripe" }, "hex": "#22304B", "stripe": "#F1EEE6" },
+        { "key": "green-stripe", "name": { "id": "Hijau bergaris", "en": "Green stripe" }, "hex": "#1E4D3B", "stripe": "#E3D5B8" }
+      ],
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "specs": "polo"
+    },
+    {
+      "id": "breeze-polo",
+      "sample": true,
+      "rank": 8,
+      "isNew": true,
+      "category": "polo-men",
+      "sleeve": "short",
+      "kind": "plain",
+      "name": { "id": "Polo Breeze", "en": "Breeze Polo" },
+      "blurb": {
+        "id": "Versi paling ringan dari polo kami, untuk hari yang lembap.",
+        "en": "The lightest polo we make, for humid days."
+      },
+      "price": 329000,
+      "colors": [
+        { "key": "sky", "name": { "id": "Biru langit", "en": "Sky" }, "hex": "#B7D0E2" },
+        { "key": "sand", "name": { "id": "Pasir", "en": "Sand" }, "hex": "#D8C9AC" }
+      ],
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "specs": "polo"
+    },
+    {
+      "id": "morning-round-long-sleeve",
+      "sample": true,
+      "rank": 9,
+      "category": "polo-men",
+      "sleeve": "long",
+      "kind": "plain",
+      "name": { "id": "Polo Lengan Panjang Morning Round", "en": "Morning Round Long Sleeve Polo" },
+      "blurb": {
+        "id": "Lengan panjang untuk tee time pagi, tanpa perlu arm sleeve.",
+        "en": "Long sleeves for early tee times, no arm sleeves needed."
+      },
+      "price": 385000,
+      "colors": [
+        { "key": "white", "name": { "id": "Putih", "en": "White" }, "hex": "#F6F5F1" },
+        { "key": "fairway", "name": { "id": "Hijau fairway", "en": "Fairway green" }, "hex": "#1E4D3B" }
+      ],
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "specs": "polo"
+    },
+    {
+      "id": "womens-uv-long-sleeve",
+      "sample": true,
+      "rank": 10,
+      "isNew": true,
+      "category": "polo-women",
+      "sleeve": "long",
+      "kind": "women",
+      "name": { "id": "Polo UV Lengan Panjang Wanita", "en": "Women's UV Long Sleeve Polo" },
+      "blurb": {
+        "id": "Lengan panjang dengan potongan pas badan, untuk perlindungan matahari penuh.",
+        "en": "Full-length sleeves in a closer cut, for full sun cover."
+      },
+      "price": 395000,
+      "colors": [
+        { "key": "ivory", "name": { "id": "Gading", "en": "Ivory" }, "hex": "#EDE6D7" },
+        { "key": "sky", "name": { "id": "Biru langit", "en": "Sky" }, "hex": "#B7D0E2" }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "specs": "polo"
+    }
+  ]
+}

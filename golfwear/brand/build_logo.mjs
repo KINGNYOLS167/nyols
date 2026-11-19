@@ -147,6 +147,14 @@ async function shoot(page, html, file, { width, height, transparent = false, sca
 
 // ---------- outputs ----------
 async function main() {
+  // 0. Raw geometry for code that draws the logo itself (the website)
+  const m = markPaths();
+  write('logo/golfwear-paths.json', JSON.stringify({
+    colors: BRAND,
+    mark: { viewBox: [0, 0, f(m.box.x2), 100], g: m.g, flag: m.flag },
+    wordmark: { d: WORD.d, box: WORD.box, capHeight: f(CAP), fontSize: 100, tracking: TRACKING },
+  }, null, 1));
+
   // 1. Logo SVGs
   for (const [name, make] of Object.entries(LOCKUPS)) {
     for (const [vname, v] of Object.entries(VARIANTS)) {

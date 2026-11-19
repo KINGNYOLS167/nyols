@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  --color-fairway: #12372A;   /* brand green: hero, leaderboard, story */
+  --color-rough: #0B261C;     /* deeper green: footer, pressed states */
+  --color-stripe: #1A4536;    /* raised rows on green */
+  --color-brass: #B8975A;     /* the flag: ranks, focus, primary buttons */
+  --color-brass-soft: #D9C69F;
+  --color-ivory: #F4EFE4;     /* light surface; text on green */
+  --color-chalk: #FBF8F2;
+  --color-sand: #E9E1D2;      /* behind product images */
+  --color-ink: #101614;       /* text on light */
+  --color-stone: #5C625C;     /* secondary text on light */
+  --color-moss: #A3B6A9;      /* secondary text on green */
+  --color-line: #DCD3C1;      /* hairlines on light */
+
+  --font-sans: "Jost", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ease-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    background: var(--color-fairway);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--color-brass);
+    color: var(--color-fairway);
+  }
+  summary::-webkit-details-marker { display: none; }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: clamp(16px, 4vw, 40px);
+  }
+
+  /* Mown-fairway stripes: wide diagonal bands a shade apart */
+  .mow {
+    background-color: var(--color-fairway);
+    background-image:
+      radial-gradient(120% 80% at 78% 18%, rgb(244 239 228 / 0.07), transparent 60%),
+      repeating-linear-gradient(-24deg, transparent 0 140px, rgb(255 255 255 / 0.03) 140px 280px);
+  }
+
+  /* Type scale (perfect fourth, fluid at the top end) */
+  .display {
+    font-weight: 300;
+    letter-spacing: -0.022em;
+    line-height: 0.98;
+    font-size: clamp(2.9rem, 1.7rem + 5vw, 6.6rem);
+  }
+  .h2 {
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.06;
+    font-size: clamp(2.1rem, 1.5rem + 2.2vw, 3.4rem);
+  }
+  .lede {
+    font-size: clamp(1.06rem, 0.98rem + 0.35vw, 1.25rem);
+    line-height: 1.55;
+  }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6em;
+    min-height: 52px;
+    padding: 0 1.6em;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    transition: background-color 0.25s var(--ease-quint), color 0.25s var(--ease-quint), border-color 0.25s var(--ease-quint);
+  }
+  .btn-brass { background: var(--color-brass); color: var(--color-fairway); }
+  .btn-brass:hover { background: var(--color-brass-soft); }
+  .btn-line-light { border: 1.5px solid rgb(244 239 228 / 0.45); color: var(--color-ivory); }
+  .btn-line-light:hover { border-color: var(--color-ivory); background: rgb(244 239 228 / 0.06); }
+  .btn-green { background: var(--color-fairway); color: var(--color-ivory); }
+  .btn-green:hover { background: var(--color-rough); }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    min-height: 42px;
+    padding: 0 1.1em;
+    border-radius: 999px;
+    border: 1.5px solid var(--color-line);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    white-space: nowrap;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .chip:hover { border-color: var(--color-fairway); }
+  .chip[aria-pressed="true"] { background: var(--color-fairway); border-color: var(--color-fairway); color: var(--color-ivory); }
+}
+
+/* Custom cursor (only switched on for mouse users, see Cursor.tsx) */
+html.has-cursor,
+html.has-cursor * { cursor: none !important; }
+html.has-cursor input,
+html.has-cursor textarea { cursor: text !important; }
+
+/* The quick view dialog */
+dialog.qv::backdrop { background: rgb(11 38 28 / 0.62); backdrop-filter: blur(3px); }
+dialog.qv[open] { animation: qv-in 0.45s var(--ease-quint); }
+@keyframes qv-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+/* The flag on the story mark flutters while you hover it */
+.flag-flutter { transform-origin: 0% 50%; transform-box: fill-box; }
+.mark-hover:hover .flag-flutter { animation: flutter 0.9s ease-in-out infinite; }
+@keyframes flutter {
+  0%, 100% { transform: skewY(0deg) scaleX(1); }
+  35% { transform: skewY(-5deg) scaleX(0.94); }
+  70% { transform: skewY(4deg) scaleX(1.03); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

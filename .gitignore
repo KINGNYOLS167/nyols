@@ -7,3 +7,7 @@ golfwear/public/img/products/
 
 # npm installs
 node_modules/
+
+# Site build output
+golfwear/site/dist/
+golfwear/site/scripts/.render/
