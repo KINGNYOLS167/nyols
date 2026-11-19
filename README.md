@@ -17,3 +17,18 @@ cp -r skills/* ~/.claude/skills/
 | `firecrawl-workflows` + 18 workflow skills (`firecrawl-deep-research`, `-competitive-intel`, `-seo-audit`, `-lead-gen`, `-website-design-clone`, `-market-research`, ...) | Repeatable Firecrawl-powered deliverables | vendored from [firecrawl/firecrawl-workflows](https://github.com/firecrawl/firecrawl-workflows) `skills/` (ISC) |
 
 Vendored skills are unmodified copies; re-copy from upstream to update.
+
+## Plugins (project-scoped)
+
+`.claude/settings.json` declares and enables plugins for anyone who opens this repo in Claude Code (they are prompted to trust/install on first run).
+
+| Plugin | What it adds | Setup |
+|---|---|---|
+| `21st@21st` (marketplace [21st-dev/claude-code-plugin](https://github.com/21st-dev/claude-code-plugin), Apache-2.0) | 7 skills (`21st-cli-use`, `21st-ai`, `21st-registry`, `21st-design-sync`, `21st-ui-build`, `21st-ui-explore`, `21st-ui-review`) + the remote `21st` MCP server (`https://21st.dev/api/mcp`) | Export `API_KEY_21ST` (key from https://21st.dev/settings/api-keys) in the shell that launches Claude Code. Never commit the key. |
+
+Manual equivalent:
+
+```bash
+claude plugin marketplace add 21st-dev/claude-code-plugin
+claude plugin install 21st@21st --scope project
+```
