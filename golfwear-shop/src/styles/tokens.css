@@ -1,0 +1,101 @@
+/*
+ * Design tokens — three layers: primitive → semantic → component.
+ * Change the look of the whole store here. Components never use raw hex.
+ * Contrast (WCAG): text-muted on bg 5.2:1, brass-700 on bg 5.6:1,
+ * white on tokopedia-700 5.5:1, brass-300 on green-800 5.5:1.
+ */
+:root {
+  /* ---- Primitive ---- */
+  --green-950: #0f1a15;
+  --green-900: #13281f;
+  --green-800: #183a2c;
+  --green-700: #1f4a38;
+  --green-100: #dfe7e1;
+  --green-50: #eef2ee;
+  --ivory-0: #ffffff;
+  --ivory-50: #faf8f3;
+  --ivory-100: #f3efe6;
+  --ivory-200: #ebe5d8;
+  --sand-300: #e0d9ca;
+  --stone-400: #8e9a93;
+  --stone-600: #5f6b64;
+  --brass-300: #c9a86a;
+  --brass-500: #a8834a;
+  --brass-700: #7e5f2c;
+  --red-700: #a3352b;
+  --tokopedia-500: #03ac0e;
+  --tokopedia-700: #027a0c;
+  --tokopedia-800: #01660a;
+
+  /* ---- Semantic ---- */
+  --color-bg: var(--ivory-50);
+  --color-bg-alt: var(--ivory-100);
+  --color-surface: var(--ivory-0);
+  --color-text: var(--green-950);
+  --color-text-muted: var(--stone-600);
+  --color-text-inverse: var(--ivory-50);
+  --color-text-inverse-muted: #a9b5ae;
+  --color-primary: var(--green-800);
+  --color-primary-hover: var(--green-700);
+  --color-primary-deep: var(--green-950);
+  --color-accent: var(--brass-500);
+  --color-accent-text: var(--brass-700);
+  --color-accent-on-dark: var(--brass-300);
+  --color-border: var(--sand-300);
+  --color-border-strong: var(--stone-400);
+  --color-sale: var(--red-700);
+  --color-success: var(--tokopedia-700);
+  --color-focus: var(--brass-500);
+
+  /* ---- Typography ---- */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem);
+  --text-3xl: clamp(2.25rem, 1.6rem + 2.4vw, 3.5rem);
+  --text-hero: clamp(2.75rem, 1.8rem + 4.2vw, 5.25rem);
+  --tracking-caps: 0.14em;
+
+  /* ---- Space, radius, shadow, motion ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 6.5rem;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgb(15 26 21 / 0.06);
+  --shadow-md: 0 8px 24px -10px rgb(15 26 21 / 0.18);
+  --shadow-lg: 0 24px 60px -24px rgb(15 26 21 / 0.35);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 160ms;
+  --dur-med: 280ms;
+  --container: 1280px;
+  --gutter: clamp(1rem, 0.5rem + 2vw, 2.5rem);
+  --header-h: 72px;
+
+  /* ---- Component ---- */
+  --btn-primary-bg: var(--color-primary);
+  --btn-primary-bg-hover: var(--color-primary-hover);
+  --btn-primary-fg: var(--color-text-inverse);
+  --btn-tokopedia-bg: var(--tokopedia-700);
+  --btn-tokopedia-bg-hover: var(--tokopedia-800);
+  --btn-tokopedia-fg: #ffffff;
+  --card-bg: var(--color-surface);
+  --card-media-bg: var(--ivory-100);
+  --chip-bg: var(--color-surface);
+  --chip-bg-active: var(--color-primary);
+  --badge-best-bg: var(--color-primary);
+  --badge-new-bg: var(--brass-700);
+  --badge-sale-bg: var(--red-700);
+}

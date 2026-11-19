@@ -1,0 +1,1505 @@
+{
+  "brands": [
+    {
+      "id": "footjoy",
+      "name": "FootJoy",
+      "origin": "USA",
+      "blurb": "Classic tour polos, leather gloves and warm layers."
+    },
+    {
+      "id": "titleist",
+      "name": "Titleist",
+      "origin": "USA",
+      "blurb": "Tour-proven caps, gloves and clean performance basics."
+    },
+    {
+      "id": "callaway",
+      "name": "Callaway",
+      "origin": "USA",
+      "blurb": "Athletic fits and cooling fabrics built for heat."
+    },
+    {
+      "id": "taylormade",
+      "name": "TaylorMade",
+      "origin": "USA",
+      "blurb": "Modern tour style with stretch and sun protection."
+    },
+    {
+      "id": "ping",
+      "name": "PING",
+      "origin": "USA",
+      "blurb": "Understated design with engineered comfort."
+    },
+    {
+      "id": "honma",
+      "name": "Honma",
+      "origin": "Japan",
+      "blurb": "Japanese craftsmanship for the refined golfer."
+    },
+    {
+      "id": "puma",
+      "name": "PUMA Golf",
+      "origin": "Germany",
+      "blurb": "Sporty fits and soft stretch for a free swing."
+    },
+    {
+      "id": "adidas",
+      "name": "adidas Golf",
+      "origin": "Germany",
+      "blurb": "Lightweight performance for hot, humid rounds."
+    }
+  ],
+  "categories": [
+    {
+      "id": "polo",
+      "name": "Polo Shirts",
+      "group": "clothing",
+      "shape": "polo",
+      "blurb": "Breathable polos for every tee time."
+    },
+    {
+      "id": "longsleeve",
+      "name": "Long Sleeve & Mock Neck",
+      "group": "clothing",
+      "shape": "longsleeve",
+      "blurb": "Full-arm sun cover without the heat."
+    },
+    {
+      "id": "sleeves",
+      "name": "Arm Sleeves",
+      "group": "sleeves",
+      "shape": "sleeves",
+      "blurb": "UV-blocking, cooling arm sleeves."
+    },
+    {
+      "id": "outerwear",
+      "name": "Outerwear & Vests",
+      "group": "clothing",
+      "shape": "jacket",
+      "blurb": "Wind, rain and early-morning layers."
+    },
+    {
+      "id": "bottoms",
+      "name": "Pants, Shorts & Skorts",
+      "group": "clothing",
+      "shape": "pants",
+      "blurb": "Stretch bottoms that move with your turn."
+    },
+    {
+      "id": "headwear",
+      "name": "Caps & Visors",
+      "group": "accessories",
+      "shape": "cap",
+      "blurb": "Shade and sweat control, tour style."
+    },
+    {
+      "id": "gloves",
+      "name": "Gloves",
+      "group": "accessories",
+      "shape": "glove",
+      "blurb": "Grip and feel for every swing."
+    }
+  ],
+  "products": [
+    {
+      "id": "fj-lisle-performance-polo",
+      "sku": "FJ-PL-001",
+      "name": "Lisle Performance Polo",
+      "brand": "footjoy",
+      "category": "polo",
+      "gender": "men",
+      "price": 1150000,
+      "compareAt": null,
+      "cost": 690000,
+      "sold": 538,
+      "stock": 38,
+      "colors": [
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Sage",
+          "hex": "#8FA58F"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "A tour-classic polo in soft lisle knit. Smooth hand-feel, a crisp self-fabric collar and a tailored athletic fit that stays neat all 18 holes.",
+      "features": [
+        "Moisture-wicking stretch fabric",
+        "UPF 50+ sun protection",
+        "Anti-odor finish",
+        "Self-fabric collar that holds its shape"
+      ]
+    },
+    {
+      "id": "fj-uv-cooling-arm-sleeves",
+      "sku": "FJ-SL-001",
+      "name": "UV Cooling Arm Sleeves",
+      "brand": "footjoy",
+      "category": "sleeves",
+      "gender": "unisex",
+      "price": 220000,
+      "compareAt": null,
+      "cost": 110000,
+      "sold": 486,
+      "stock": 120,
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        }
+      ],
+      "sizes": [
+        "S/M",
+        "L/XL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Lightweight cooling sleeves that keep the tropical sun off your arms while staying cool to the touch.",
+      "features": [
+        "Blocks up to 98% of UV rays",
+        "Cool-touch fabric lowers skin temperature",
+        "Silicone grip band stays in place",
+        "Sold as a pair"
+      ]
+    },
+    {
+      "id": "fj-tour-cabretta-glove",
+      "sku": "FJ-GL-001",
+      "name": "Tour Cabretta Leather Glove",
+      "brand": "footjoy",
+      "category": "gloves",
+      "gender": "men",
+      "price": 420000,
+      "compareAt": null,
+      "cost": 250000,
+      "sold": 467,
+      "stock": 64,
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "ML",
+        "L",
+        "XL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Thin, supple cabretta leather for maximum feel. A precise fit through the palm and fingers for confident grip in humid conditions.",
+      "features": [
+        "Premium grip zones",
+        "Perforated for airflow",
+        "Hook-and-loop wrist closure",
+        "Worn on the left hand (right-handed golfers)"
+      ]
+    },
+    {
+      "id": "fj-thermal-quarter-zip",
+      "sku": "FJ-OW-001",
+      "name": "Thermal Quarter-Zip Pullover",
+      "brand": "footjoy",
+      "category": "outerwear",
+      "gender": "men",
+      "price": 1650000,
+      "compareAt": null,
+      "cost": 1000000,
+      "sold": 96,
+      "stock": 14,
+      "colors": [
+        {
+          "name": "Charcoal",
+          "hex": "#3B3F45"
+        },
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "shape": "jacket",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Brushed-back midlayer for early tee times and highland courses. Quarter-zip neck for quick temperature control.",
+      "features": [
+        "Wind-resistant shell",
+        "Lightweight and packable",
+        "Two-way stretch for full rotation",
+        "Zip hand pockets"
+      ]
+    },
+    {
+      "id": "fj-womens-sleeveless-polo",
+      "sku": "FJ-PL-002",
+      "name": "Women's Sleeveless Jersey Polo",
+      "brand": "footjoy",
+      "category": "polo",
+      "gender": "women",
+      "price": 980000,
+      "compareAt": null,
+      "cost": 590000,
+      "sold": 143,
+      "stock": 22,
+      "colors": [
+        {
+          "name": "Blush",
+          "hex": "#E8C4C0"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "shape": "sleeveless",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "A feminine sleeveless polo in breathable jersey with a flattering, easy fit.",
+      "features": [
+        "Moisture-wicking stretch fabric",
+        "UPF 50+ sun protection",
+        "Anti-odor finish",
+        "Self-fabric collar that holds its shape"
+      ]
+    },
+    {
+      "id": "tt-tour-performance-cap",
+      "sku": "TT-HW-001",
+      "name": "Tour Performance Cap",
+      "brand": "titleist",
+      "category": "headwear",
+      "gender": "unisex",
+      "price": 450000,
+      "compareAt": null,
+      "cost": 250000,
+      "sold": 412,
+      "stock": 85,
+      "colors": [
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        }
+      ],
+      "sizes": [
+        "Adjustable"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "The cap worn every week on tour: structured front, performance fabric and a sweatband that keeps you dry.",
+      "features": [
+        "Sweat-wicking inner band",
+        "Breathable mesh panels",
+        "Pre-curved brim",
+        "Adjustable strap"
+      ]
+    },
+    {
+      "id": "tt-tour-pique-polo",
+      "sku": "TT-PL-001",
+      "name": "Tour Pique Polo",
+      "brand": "titleist",
+      "category": "polo",
+      "gender": "men",
+      "price": 1250000,
+      "compareAt": null,
+      "cost": 760000,
+      "sold": 301,
+      "stock": 30,
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Refined pique knit with a clean, modern cut. Lightweight, breathable and built for the swing.",
+      "features": [
+        "Moisture-wicking stretch fabric",
+        "UPF 50+ sun protection",
+        "Anti-odor finish",
+        "Self-fabric collar that holds its shape"
+      ]
+    },
+    {
+      "id": "tt-players-flex-glove",
+      "sku": "TT-GL-001",
+      "name": "Players Flex Glove",
+      "brand": "titleist",
+      "category": "gloves",
+      "gender": "men",
+      "price": 380000,
+      "compareAt": null,
+      "cost": 220000,
+      "sold": 274,
+      "stock": 50,
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "ML",
+        "L",
+        "XL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Premium leather palm with stretch synthetic back panels for a glove that moves with your hand.",
+      "features": [
+        "Premium grip zones",
+        "Perforated for airflow",
+        "Hook-and-loop wrist closure",
+        "Worn on the left hand (right-handed golfers)"
+      ]
+    },
+    {
+      "id": "tt-lightweight-wind-vest",
+      "sku": "TT-OW-001",
+      "name": "Lightweight Wind Vest",
+      "brand": "titleist",
+      "category": "outerwear",
+      "gender": "men",
+      "price": 1450000,
+      "compareAt": null,
+      "cost": 880000,
+      "sold": 58,
+      "stock": 12,
+      "colors": [
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        },
+        {
+          "name": "Grey",
+          "hex": "#9AA0A6"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "shape": "vest",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "A packable vest that blocks the wind and frees your arms. Layer over any polo.",
+      "features": [
+        "Wind-resistant shell",
+        "Lightweight and packable",
+        "Two-way stretch for full rotation",
+        "Zip hand pockets"
+      ]
+    },
+    {
+      "id": "cw-swing-tech-printed-polo",
+      "sku": "CW-PL-001",
+      "name": "Swing Tech Printed Polo",
+      "brand": "callaway",
+      "category": "polo",
+      "gender": "men",
+      "price": 890000,
+      "compareAt": 1050000,
+      "cost": 520000,
+      "sold": 356,
+      "stock": 40,
+      "colors": [
+        {
+          "name": "Cobalt",
+          "hex": "#2F5DA8"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Cooling, quick-dry polo with a subtle all-over print and stretch for full rotation.",
+      "features": [
+        "Moisture-wicking stretch fabric",
+        "UPF 50+ sun protection",
+        "Anti-odor finish",
+        "Self-fabric collar that holds its shape"
+      ]
+    },
+    {
+      "id": "cw-cooling-compression-sleeves",
+      "sku": "CW-SL-001",
+      "name": "Cooling Compression Arm Sleeves",
+      "brand": "callaway",
+      "category": "sleeves",
+      "gender": "unisex",
+      "price": 240000,
+      "compareAt": null,
+      "cost": 120000,
+      "sold": 392,
+      "stock": 110,
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        }
+      ],
+      "sizes": [
+        "S/M",
+        "L/XL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Light compression supports the arm muscles while the cool-touch knit blocks UV.",
+      "features": [
+        "Blocks up to 98% of UV rays",
+        "Cool-touch fabric lowers skin temperature",
+        "Silicone grip band stays in place",
+        "Sold as a pair"
+      ]
+    },
+    {
+      "id": "cw-stretch-tech-pants",
+      "sku": "CW-BT-001",
+      "name": "Stretch Tech Golf Pants",
+      "brand": "callaway",
+      "category": "bottoms",
+      "gender": "men",
+      "price": 1350000,
+      "compareAt": null,
+      "cost": 820000,
+      "sold": 118,
+      "stock": 20,
+      "colors": [
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        },
+        {
+          "name": "Khaki",
+          "hex": "#C7B48F"
+        },
+        {
+          "name": "Charcoal",
+          "hex": "#3B3F45"
+        }
+      ],
+      "sizes": [
+        "30",
+        "32",
+        "34",
+        "36",
+        "38"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Tailored golf pants in a four-way stretch woven fabric with a water-repellent finish.",
+      "features": [
+        "Four-way stretch woven fabric",
+        "Water-repellent finish",
+        "Silicone waistband gripper keeps shirt tucked",
+        "Zip back pocket"
+      ]
+    },
+    {
+      "id": "cw-womens-floral-polo",
+      "sku": "CW-PL-002",
+      "name": "Women's Floral Print Polo",
+      "brand": "callaway",
+      "category": "polo",
+      "gender": "women",
+      "price": 920000,
+      "compareAt": null,
+      "cost": 550000,
+      "sold": 167,
+      "stock": 18,
+      "colors": [
+        {
+          "name": "Lilac",
+          "hex": "#B9A6D6"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "A soft floral print on a cooling performance knit with a feminine, flattering fit.",
+      "features": [
+        "Moisture-wicking stretch fabric",
+        "UPF 50+ sun protection",
+        "Anti-odor finish",
+        "Self-fabric collar that holds its shape"
+      ]
+    },
+    {
+      "id": "tm-tour-classic-cap",
+      "sku": "TM-HW-001",
+      "name": "Tour Classic Cap",
+      "brand": "taylormade",
+      "category": "headwear",
+      "gender": "unisex",
+      "price": 420000,
+      "compareAt": null,
+      "cost": 230000,
+      "sold": 288,
+      "stock": 70,
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        }
+      ],
+      "sizes": [
+        "Adjustable"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Clean, structured tour cap with breathable panels and a pre-curved brim.",
+      "features": [
+        "Sweat-wicking inner band",
+        "Breathable mesh panels",
+        "Pre-curved brim",
+        "Adjustable strap"
+      ]
+    },
+    {
+      "id": "tm-performance-stretch-polo",
+      "sku": "TM-PL-001",
+      "name": "Performance Stretch Polo",
+      "brand": "taylormade",
+      "category": "polo",
+      "gender": "men",
+      "price": 1050000,
+      "compareAt": null,
+      "cost": 630000,
+      "sold": 205,
+      "stock": 26,
+      "colors": [
+        {
+          "name": "Burgundy",
+          "hex": "#7A2E3A"
+        },
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Smooth, stretchy performance knit with a modern athletic fit.",
+      "features": [
+        "Moisture-wicking stretch fabric",
+        "UPF 50+ sun protection",
+        "Anti-odor finish",
+        "Self-fabric collar that holds its shape"
+      ]
+    },
+    {
+      "id": "tm-ice-silk-arm-sleeves",
+      "sku": "TM-SL-001",
+      "name": "Ice Silk Arm Sleeves",
+      "brand": "taylormade",
+      "category": "sleeves",
+      "gender": "unisex",
+      "price": 190000,
+      "compareAt": null,
+      "cost": 90000,
+      "sold": 341,
+      "stock": 140,
+      "colors": [
+        {
+          "name": "Grey",
+          "hex": "#9AA0A6"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        }
+      ],
+      "sizes": [
+        "S/M",
+        "L/XL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Silky, ultra-light sleeves that feel cool the moment you put them on.",
+      "features": [
+        "Blocks up to 98% of UV rays",
+        "Cool-touch fabric lowers skin temperature",
+        "Silicone grip band stays in place",
+        "Sold as a pair"
+      ]
+    },
+    {
+      "id": "tm-mock-neck-base-layer",
+      "sku": "TM-LS-001",
+      "name": "Mock Neck Base Layer",
+      "brand": "taylormade",
+      "category": "longsleeve",
+      "gender": "men",
+      "price": 780000,
+      "compareAt": null,
+      "cost": 460000,
+      "sold": 132,
+      "stock": 24,
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "A sleek mock-neck layer for full sun coverage on its own or under a polo.",
+      "features": [
+        "UPF 50+ full-arm coverage",
+        "Cooling, quick-dry knit",
+        "Four-way stretch",
+        "Flat seams to prevent chafing"
+      ]
+    },
+    {
+      "id": "pg-heritage-stripe-polo",
+      "sku": "PG-PL-001",
+      "name": "Heritage Stripe Polo",
+      "brand": "ping",
+      "category": "polo",
+      "gender": "men",
+      "price": 1190000,
+      "compareAt": null,
+      "cost": 720000,
+      "sold": 154,
+      "stock": 20,
+      "colors": [
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        },
+        {
+          "name": "Teal",
+          "hex": "#2E6E6A"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Understated engineered stripes on a soft, cooling knit.",
+      "features": [
+        "Moisture-wicking stretch fabric",
+        "UPF 50+ sun protection",
+        "Anti-odor finish",
+        "Self-fabric collar that holds its shape"
+      ]
+    },
+    {
+      "id": "pg-sun-protection-mock-neck",
+      "sku": "PG-LS-001",
+      "name": "Women's Sun Protection Mock Neck",
+      "brand": "ping",
+      "category": "longsleeve",
+      "gender": "women",
+      "price": 990000,
+      "compareAt": null,
+      "cost": 600000,
+      "sold": 121,
+      "stock": 16,
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Full-arm UPF 50+ coverage in a light, airy knit made for hot afternoons.",
+      "features": [
+        "UPF 50+ full-arm coverage",
+        "Cooling, quick-dry knit",
+        "Four-way stretch",
+        "Flat seams to prevent chafing"
+      ]
+    },
+    {
+      "id": "pg-womens-pull-on-skort",
+      "sku": "PG-BT-001",
+      "name": "Women's Pull-On Skort",
+      "brand": "ping",
+      "category": "bottoms",
+      "gender": "women",
+      "price": 1050000,
+      "compareAt": null,
+      "cost": 630000,
+      "sold": 89,
+      "stock": 15,
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "shape": "skirt",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "A smooth pull-on skort with built-in shorts and a flattering A-line drape.",
+      "features": [
+        "Four-way stretch woven fabric",
+        "Water-repellent finish",
+        "Silicone waistband gripper keeps shirt tucked",
+        "Zip back pocket"
+      ]
+    },
+    {
+      "id": "pg-womens-sun-visor",
+      "sku": "PG-HW-001",
+      "name": "Women's Sun Visor",
+      "brand": "ping",
+      "category": "headwear",
+      "gender": "women",
+      "price": 350000,
+      "compareAt": null,
+      "cost": 190000,
+      "sold": 76,
+      "stock": 30,
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        }
+      ],
+      "sizes": [
+        "Adjustable"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "shape": "visor",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Open-top visor with a wide brim and a soft sweatband.",
+      "features": [
+        "Sweat-wicking inner band",
+        "Breathable mesh panels",
+        "Pre-curved brim",
+        "Adjustable strap"
+      ]
+    },
+    {
+      "id": "hn-premium-mercerized-polo",
+      "sku": "HN-PL-001",
+      "name": "Premium Mercerized Polo",
+      "brand": "honma",
+      "category": "polo",
+      "gender": "men",
+      "price": 1850000,
+      "compareAt": null,
+      "cost": 1150000,
+      "sold": 74,
+      "stock": 10,
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "tags": [
+        "new"
+      ],
+      "addedAt": "2026-10-20",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Mercerized cotton with a subtle sheen and a cool, smooth touch. Japanese finishing throughout.",
+      "features": [
+        "Moisture-wicking stretch fabric",
+        "UPF 50+ sun protection",
+        "Anti-odor finish",
+        "Self-fabric collar that holds its shape"
+      ]
+    },
+    {
+      "id": "hn-uv-cut-arm-covers",
+      "sku": "HN-SL-001",
+      "name": "UV Cut Arm Covers",
+      "brand": "honma",
+      "category": "sleeves",
+      "gender": "unisex",
+      "price": 320000,
+      "compareAt": null,
+      "cost": 170000,
+      "sold": 158,
+      "stock": 60,
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        }
+      ],
+      "sizes": [
+        "S/M",
+        "L/XL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Japanese UV-cut fabric with a thumb loop for back-of-hand coverage.",
+      "features": [
+        "Blocks up to 98% of UV rays",
+        "Cool-touch fabric lowers skin temperature",
+        "Silicone grip band stays in place",
+        "Sold as a pair"
+      ]
+    },
+    {
+      "id": "hn-rain-wind-jacket",
+      "sku": "HN-OW-001",
+      "name": "Rain & Wind Jacket",
+      "brand": "honma",
+      "category": "outerwear",
+      "gender": "men",
+      "price": 2650000,
+      "compareAt": null,
+      "cost": 1650000,
+      "sold": 31,
+      "stock": 6,
+      "colors": [
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        },
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "tags": [
+        "new"
+      ],
+      "addedAt": "2026-10-28",
+      "shape": "jacket",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Fully seam-taped, waterproof jacket for monsoon rounds. Quiet fabric that will not distract your swing.",
+      "features": [
+        "Wind-resistant shell",
+        "Lightweight and packable",
+        "Two-way stretch for full rotation",
+        "Zip hand pockets"
+      ]
+    },
+    {
+      "id": "hn-womens-pair-gloves",
+      "sku": "HN-GL-001",
+      "name": "Women's Pair Gloves",
+      "brand": "honma",
+      "category": "gloves",
+      "gender": "women",
+      "price": 450000,
+      "compareAt": null,
+      "cost": 260000,
+      "sold": 69,
+      "stock": 20,
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "ML",
+        "L",
+        "XL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "A pair of soft synthetic gloves for both hands with UV protection on the back.",
+      "features": [
+        "Pair for both hands",
+        "UV protection on back of hand",
+        "Soft, grippy synthetic palm",
+        "Machine washable"
+      ]
+    },
+    {
+      "id": "pm-soft-touch-stretch-polo",
+      "sku": "PM-PL-001",
+      "name": "Soft-Touch Stretch Polo",
+      "brand": "puma",
+      "category": "polo",
+      "gender": "men",
+      "price": 950000,
+      "compareAt": null,
+      "cost": 560000,
+      "sold": 231,
+      "stock": 34,
+      "colors": [
+        {
+          "name": "Light Blue",
+          "hex": "#A9C4DE"
+        },
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Brushed soft-touch knit with plenty of stretch and a clean, sporty look.",
+      "features": [
+        "Moisture-wicking stretch fabric",
+        "UPF 50+ sun protection",
+        "Anti-odor finish",
+        "Self-fabric collar that holds its shape"
+      ]
+    },
+    {
+      "id": "pm-tailored-golf-shorts",
+      "sku": "PM-BT-001",
+      "name": "Tailored Golf Shorts",
+      "brand": "puma",
+      "category": "bottoms",
+      "gender": "men",
+      "price": 850000,
+      "compareAt": null,
+      "cost": 500000,
+      "sold": 176,
+      "stock": 28,
+      "colors": [
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        },
+        {
+          "name": "Khaki",
+          "hex": "#C7B48F"
+        },
+        {
+          "name": "Grey",
+          "hex": "#9AA0A6"
+        }
+      ],
+      "sizes": [
+        "30",
+        "32",
+        "34",
+        "36",
+        "38"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "shape": "shorts",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Lightweight stretch shorts with a tailored leg for hot-weather rounds.",
+      "features": [
+        "Four-way stretch woven fabric",
+        "Water-repellent finish",
+        "Silicone waistband gripper keeps shirt tucked",
+        "Zip back pocket"
+      ]
+    },
+    {
+      "id": "pm-structured-snapback-cap",
+      "sku": "PM-HW-001",
+      "name": "Structured Snapback Cap",
+      "brand": "puma",
+      "category": "headwear",
+      "gender": "unisex",
+      "price": 380000,
+      "compareAt": null,
+      "cost": 200000,
+      "sold": 197,
+      "stock": 45,
+      "colors": [
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        }
+      ],
+      "sizes": [
+        "Adjustable"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "A bold, structured snapback cap with a flat brim option and breathable crown.",
+      "features": [
+        "Sweat-wicking inner band",
+        "Breathable mesh panels",
+        "Pre-curved brim",
+        "Adjustable strap"
+      ]
+    },
+    {
+      "id": "pm-womens-uv-long-sleeve",
+      "sku": "PM-LS-001",
+      "name": "Women's Long Sleeve UV Top",
+      "brand": "puma",
+      "category": "longsleeve",
+      "gender": "women",
+      "price": 850000,
+      "compareAt": 990000,
+      "cost": 500000,
+      "sold": 98,
+      "stock": 14,
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Light Blue",
+          "hex": "#A9C4DE"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Lightweight long-sleeve top with a half-zip neck and UPF 50+ protection.",
+      "features": [
+        "UPF 50+ full-arm coverage",
+        "Cooling, quick-dry knit",
+        "Four-way stretch",
+        "Flat seams to prevent chafing"
+      ]
+    },
+    {
+      "id": "ad-ultimate-performance-polo",
+      "sku": "AD-PL-001",
+      "name": "Ultimate Performance Polo",
+      "brand": "adidas",
+      "category": "polo",
+      "gender": "men",
+      "price": 990000,
+      "compareAt": null,
+      "cost": 590000,
+      "sold": 264,
+      "stock": 36,
+      "colors": [
+        {
+          "name": "Navy",
+          "hex": "#1E2B45"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "A lightweight, sweat-wicking polo with a soft collar and athletic fit.",
+      "features": [
+        "Moisture-wicking stretch fabric",
+        "UPF 50+ sun protection",
+        "Anti-odor finish",
+        "Self-fabric collar that holds its shape"
+      ]
+    },
+    {
+      "id": "ad-sun-protection-sleeves",
+      "sku": "AD-SL-001",
+      "name": "Sun Protection Sleeves",
+      "brand": "adidas",
+      "category": "sleeves",
+      "gender": "unisex",
+      "price": 260000,
+      "compareAt": null,
+      "cost": 130000,
+      "sold": 210,
+      "stock": 80,
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        },
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        }
+      ],
+      "sizes": [
+        "S/M",
+        "L/XL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Breathable UPF 50 sleeves with a gripper top band that stays put.",
+      "features": [
+        "Blocks up to 98% of UV rays",
+        "Cool-touch fabric lowers skin temperature",
+        "Silicone grip band stays in place",
+        "Sold as a pair"
+      ]
+    },
+    {
+      "id": "ad-tapered-golf-pants",
+      "sku": "AD-BT-001",
+      "name": "Tapered Golf Pants",
+      "brand": "adidas",
+      "category": "bottoms",
+      "gender": "men",
+      "price": 1250000,
+      "compareAt": null,
+      "cost": 750000,
+      "sold": 102,
+      "stock": 18,
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#1B1D1F"
+        },
+        {
+          "name": "Grey",
+          "hex": "#9AA0A6"
+        }
+      ],
+      "sizes": [
+        "30",
+        "32",
+        "34",
+        "36",
+        "38"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Slim tapered pants with stretch for a sharp look from tee to clubhouse.",
+      "features": [
+        "Four-way stretch woven fabric",
+        "Water-repellent finish",
+        "Silicone waistband gripper keeps shirt tucked",
+        "Zip back pocket"
+      ]
+    },
+    {
+      "id": "ad-all-weather-grip-glove",
+      "sku": "AD-GL-001",
+      "name": "All-Weather Grip Glove",
+      "brand": "adidas",
+      "category": "gloves",
+      "gender": "men",
+      "price": 280000,
+      "compareAt": 330000,
+      "cost": 150000,
+      "sold": 233,
+      "stock": 55,
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "ML",
+        "L",
+        "XL"
+      ],
+      "tags": [],
+      "addedAt": "2026-06-01",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Synthetic glove that keeps its grip in heat, humidity and light rain.",
+      "features": [
+        "Premium grip zones",
+        "Perforated for airflow",
+        "Hook-and-loop wrist closure",
+        "Worn on the left hand (right-handed golfers)"
+      ]
+    },
+    {
+      "id": "ad-womens-sleeveless-polo",
+      "sku": "AD-PL-002",
+      "name": "Women's Ultimate Sleeveless Polo",
+      "brand": "adidas",
+      "category": "polo",
+      "gender": "women",
+      "price": 850000,
+      "compareAt": null,
+      "cost": 500000,
+      "sold": 129,
+      "stock": 20,
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#F4F3EE"
+        },
+        {
+          "name": "Mint",
+          "hex": "#A8D5C2"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "tags": [
+        "new"
+      ],
+      "addedAt": "2026-11-02",
+      "shape": "sleeveless",
+      "image": "",
+      "tokopediaUrl": "",
+      "description": "Airy sleeveless polo with a feminine cut and quick-dry fabric.",
+      "features": [
+        "Moisture-wicking stretch fabric",
+        "UPF 50+ sun protection",
+        "Anti-odor finish",
+        "Self-fabric collar that holds its shape"
+      ]
+    }
+  ]
+}
