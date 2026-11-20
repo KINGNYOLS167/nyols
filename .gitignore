@@ -1,0 +1,13 @@
+# Firecrawl scrape cache (regenerate with the firecrawl CLI)
+.firecrawl/
+
+# Product photos pulled from the Tokopedia store; regenerate with
+# golfwear/scripts/download_images.py after a fresh scrape
+golfwear/public/img/products/
+
+# npm installs
+node_modules/
+
+# Site build output
+golfwear/site/dist/
+golfwear/site/scripts/.render/

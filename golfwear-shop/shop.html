@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop — Nyols Golf</title>
+  <meta name="description" content="Shop golf polos, long sleeves, arm sleeves, outerwear, pants, caps and gloves by brand, category, size and price. Best sellers first.">
+  <meta name="theme-color" content="#183a2c">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap">
+</head>
+<body data-page="shop">
+  <main id="main">
+    <header class="page-head">
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb" data-crumbs></nav>
+        <h1 class="page-head__title" data-title>All Products</h1>
+        <p class="page-head__lede" data-lede>Every style we carry, best sellers first.</p>
+        <div class="quick-cats" data-quick-cats></div>
+      </div>
+    </header>
+
+    <div class="container shop">
+      <aside class="filters" id="filters" aria-label="Product filters" data-filters>
+        <div class="filters__head">
+          <h2>Filters</h2>
+          <button type="button" class="icon-btn filters__close" data-close-filters aria-label="Close filters">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+        <form class="filters__form" data-filter-form></form>
+        <div class="filters__foot">
+          <button type="button" class="btn btn--ghost" data-clear>Clear all</button>
+          <button type="button" class="btn" data-close-filters data-show-results>Show results</button>
+        </div>
+      </aside>
+      <div class="filters-backdrop" data-close-filters hidden></div>
+
+      <section class="results" aria-labelledby="results-count">
+        <div class="toolbar">
+          <button type="button" class="btn btn--ghost btn--sm filters-toggle" data-open-filters aria-controls="filters" aria-expanded="false">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+            Filters <span class="filters-toggle__n" data-filter-count></span>
+          </button>
+          <p class="toolbar__count" id="results-count" aria-live="polite" data-count></p>
+          <label class="sort">
+            <span>Sort by</span>
+            <select data-sort></select>
+          </label>
+        </div>
+        <ul class="active-filters" data-active aria-label="Active filters"></ul>
+        <div class="grid grid--shop" data-grid></div>
+        <div class="empty" data-empty hidden>
+          <h2>No products match those filters</h2>
+          <p>Try removing a filter, or browse our best sellers instead.</p>
+          <div class="empty__ctas">
+            <button type="button" class="btn" data-clear>Clear all filters</button>
+            <a class="btn btn--ghost" href="shop.html?sort=bestselling">See best sellers</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="/src/pages/shop.js"></script>
+</body>
+</html>

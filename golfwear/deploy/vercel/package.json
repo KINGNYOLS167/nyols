@@ -1,0 +1,7 @@
+{
+  "name": "golfwear-deploy",
+  "private": true,
+  "scripts": {
+    "build": "sh build.sh"
+  }
+}
