@@ -15,10 +15,10 @@ function modeFor(target: EventTarget | null): Mode {
 
 const RING: Record<Mode, string> = {
   hidden: 'h-8 w-8 opacity-0',
-  default: 'h-8 w-8 border-[1.5px] border-brass',
-  link: 'h-14 w-14 border-[1.5px] border-brass bg-brass/15',
-  view: 'h-[86px] w-[86px] bg-fairway text-ivory',
-  buy: 'h-[86px] w-[86px] bg-brass text-fairway',
+  default: 'h-8 w-8 border-[1.5px] border-champagne',
+  link: 'h-14 w-14 border-[1.5px] border-champagne bg-champagne/15',
+  view: 'h-[86px] w-[86px] bg-forest text-ivory',
+  buy: 'h-[86px] w-[86px] bg-champagne text-pine',
   drag: 'h-[86px] w-[86px] border-[1.5px] border-ivory/80 text-ivory backdrop-blur-[2px]',
 };
 
@@ -57,7 +57,8 @@ export function Cursor() {
       }
       dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
     };
-    const over = (e: PointerEvent) => { if (e.pointerType === 'mouse') setMode(modeFor(e.target)); };
+    // Chrome fires pointerover after layout changes even before the mouse moves; wait for a real move.
+    const over = (e: PointerEvent) => { if (shown && e.pointerType === 'mouse') setMode(modeFor(e.target)); };
     const out = (e: PointerEvent) => { if (!e.relatedTarget) { shown = false; setMode('hidden'); } };
     const down = () => gsap.to(ring.current, { scale: 0.85, duration: 0.15 });
     const up = () => gsap.to(ring.current, { scale: 1, duration: 0.3, ease: 'back.out(3)' });
@@ -96,7 +97,7 @@ export function Cursor() {
       </div>
       <div
         ref={dot}
-        className={`fixed left-0 top-0 h-[7px] w-[7px] rounded-full bg-brass shadow-[0_0_0_1.5px_rgb(244_239_228/0.7)] transition-opacity duration-200 ${mode === 'hidden' || big ? 'opacity-0' : 'opacity-100'}`}
+        className={`fixed left-0 top-0 h-[7px] w-[7px] rounded-full bg-champagne shadow-[0_0_0_1.5px_rgb(244_239_228/0.7)] transition-opacity duration-200 ${mode === 'hidden' || big ? 'opacity-0' : 'opacity-100'}`}
       />
     </div>
   );

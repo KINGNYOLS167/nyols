@@ -1,6 +1,5 @@
 import paths from '../brand/paths.json';
 
-const C = paths.colors;
 const W = paths.wordmark;
 // Horizontal lockup, same proportions as the brand kit: wordmark cap height = 42% of the mark, 30-unit gap.
 const CAP = 42;
@@ -9,8 +8,10 @@ const WORD_X = 130 - W.box.x1 * K;
 const WIDTH = 130 + (W.box.x2 - W.box.x1) * K;
 
 type Tone = 'light' | 'dark';
+// Site palette (a touch deeper than the print kit's #12372A / #B8975A / #F4EFE4).
+const SITE = { forest: '#173D32', champagne: '#C7B58A', ivory: '#F5F2EA' };
 const colours = (tone: Tone) =>
-  tone === 'dark' ? { g: C.ivory, flag: C.brass, text: C.ivory } : { g: C.green, flag: C.brass, text: C.green };
+  tone === 'dark' ? { g: SITE.ivory, flag: SITE.champagne, text: SITE.ivory } : { g: SITE.forest, flag: SITE.champagne, text: SITE.forest };
 
 /** The G mark. `flutter` makes the flag wave on hover (used once, in the story section). */
 export function Mark({ tone = 'light', className, flutter = false, title }: { tone?: Tone; className?: string; flutter?: boolean; title?: string }) {
@@ -40,8 +41,8 @@ export function Logo({ tone = 'light', className }: { tone?: Tone; className?: s
 /** The chosen tagline, set as in the brand kit banner. */
 export function Tagline({ className = '' }: { className?: string }) {
   return (
-    <p className={`flex items-center gap-4 text-[0.8rem] font-medium tracking-[0.32em] text-brass ${className}`}>
-      <span aria-hidden className="h-px w-9 bg-brass/70" />
+    <p className={`flex items-center gap-4 text-[0.8rem] font-medium tracking-[0.32em] text-champagne ${className}`}>
+      <span aria-hidden className="h-px w-9 bg-champagne/70" />
       <span>GOLF APPAREL · JAKARTA</span>
     </p>
   );

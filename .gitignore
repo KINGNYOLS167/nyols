@@ -11,3 +11,4 @@ node_modules/
 # Site build output
 golfwear/site/dist/
 golfwear/site/scripts/.render/
+golfwear/site/.vercel/

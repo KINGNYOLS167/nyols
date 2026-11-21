@@ -1,146 +1,117 @@
 @import "tailwindcss";
 
 @theme {
-  --color-fairway: #12372A;   /* brand green: hero, leaderboard, story */
-  --color-rough: #0B261C;     /* deeper green: footer, pressed states */
-  --color-stripe: #1A4536;    /* raised rows on green */
-  --color-brass: #B8975A;     /* the flag: ranks, focus, primary buttons */
-  --color-brass-soft: #D9C69F;
-  --color-ivory: #F4EFE4;     /* light surface; text on green */
-  --color-chalk: #FBF8F2;
-  --color-sand: #E9E1D2;      /* behind product images */
-  --color-ink: #101614;       /* text on light */
-  --color-stone: #5C625C;     /* secondary text on light */
-  --color-moss: #A3B6A9;      /* secondary text on green */
-  --color-line: #DCD3C1;      /* hairlines on light */
+  --color-forest: #173D32;     /* deep forest green: brand surfaces, primary buttons */
+  --color-pine: #102B25;       /* dark pine: hero, footer, overlays */
+  --color-ivory: #F5F2EA;      /* warm ivory: page background */
+  --color-champagne: #C7B58A;  /* the flag: accents, focus, small highlights */
+  --color-champagne-soft: #DDD0AE;
+  --color-charcoal: #222522;   /* text */
+  --color-stone: #62665F;      /* secondary text on light */
+  --color-mist: #A9B7AE;       /* secondary text on green */
+  --color-linen: #E7E1D4;      /* product image ground, quiet fills */
+  --color-hair: #D9D2C3;       /* hairlines on light */
 
   --font-sans: "Jost", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --ease-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @layer base {
-  html {
-    background: var(--color-fairway);
-    -webkit-text-size-adjust: 100%;
-  }
+  html { background: var(--color-pine); -webkit-text-size-adjust: 100%; scroll-padding-top: 110px; }
   body {
     background: var(--color-ivory);
-    color: var(--color-ink);
+    color: var(--color-charcoal);
     font-family: var(--font-sans);
     font-size: 17px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  :focus-visible {
-    outline: 2px solid var(--color-brass);
-    outline-offset: 3px;
-  }
-  ::selection {
-    background: var(--color-brass);
-    color: var(--color-fairway);
-  }
+  :focus-visible { outline: 2px solid var(--color-champagne); outline-offset: 3px; }
+  ::selection { background: var(--color-champagne); color: var(--color-pine); }
   summary::-webkit-details-marker { display: none; }
+  img { display: block; max-width: 100%; }
 }
 
 @layer components {
-  .wrap {
-    width: 100%;
-    max-width: 1320px;
-    margin-inline: auto;
-    padding-inline: clamp(16px, 4vw, 40px);
-  }
+  .wrap { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: clamp(18px, 4.2vw, 56px); }
 
-  /* Mown-fairway stripes: wide diagonal bands a shade apart */
-  .mow {
-    background-color: var(--color-fairway);
-    background-image:
-      radial-gradient(120% 80% at 78% 18%, rgb(244 239 228 / 0.07), transparent 60%),
-      repeating-linear-gradient(-24deg, transparent 0 140px, rgb(255 255 255 / 0.03) 140px 280px);
-  }
-
-  /* Type scale (perfect fourth, fluid at the top end) */
-  .display {
-    font-weight: 300;
-    letter-spacing: -0.022em;
-    line-height: 0.98;
-    font-size: clamp(2.9rem, 1.7rem + 5vw, 6.6rem);
-  }
-  .h2 {
-    font-weight: 400;
-    letter-spacing: -0.015em;
-    line-height: 1.06;
-    font-size: clamp(2.1rem, 1.5rem + 2.2vw, 3.4rem);
-  }
-  .lede {
-    font-size: clamp(1.06rem, 0.98rem + 0.35vw, 1.25rem);
-    line-height: 1.55;
-  }
+  /* Type scale */
+  .display-xl { font-weight: 400; letter-spacing: -0.035em; line-height: 0.84; font-size: clamp(3.6rem, 13.4vw, 14.5rem); text-transform: uppercase; }
+  .display { font-weight: 300; letter-spacing: -0.025em; line-height: 0.96; font-size: clamp(2.7rem, 1.6rem + 4.6vw, 6.2rem); }
+  .h2 { font-weight: 400; letter-spacing: -0.02em; line-height: 1.04; font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.9rem); }
+  .h3 { font-weight: 400; letter-spacing: -0.01em; line-height: 1.15; font-size: clamp(1.3rem, 1.1rem + 0.6vw, 1.7rem); }
+  .lede { font-size: clamp(1.06rem, 0.98rem + 0.4vw, 1.3rem); line-height: 1.55; }
+  .small { font-size: 0.875rem; line-height: 1.5; }
   .tnum { font-variant-numeric: tabular-nums; }
 
   .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6em;
-    min-height: 52px;
-    padding: 0 1.6em;
-    border-radius: 999px;
-    font-weight: 500;
-    font-size: 1rem;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-    transition: background-color 0.25s var(--ease-quint), color 0.25s var(--ease-quint), border-color 0.25s var(--ease-quint);
+    position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 0.65em;
+    min-height: 54px; padding: 0 1.75em; border-radius: 999px; overflow: hidden; isolation: isolate;
+    font-weight: 500; font-size: 1rem; letter-spacing: 0.01em; white-space: nowrap;
+    transition: color 0.45s var(--ease-quint), border-color 0.45s var(--ease-quint);
   }
-  .btn-brass { background: var(--color-brass); color: var(--color-fairway); }
-  .btn-brass:hover { background: var(--color-brass-soft); }
-  .btn-line-light { border: 1.5px solid rgb(244 239 228 / 0.45); color: var(--color-ivory); }
-  .btn-line-light:hover { border-color: var(--color-ivory); background: rgb(244 239 228 / 0.06); }
-  .btn-green { background: var(--color-fairway); color: var(--color-ivory); }
-  .btn-green:hover { background: var(--color-rough); }
+  /* fill that sweeps up from the bottom on hover */
+  .btn::before {
+    content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+    transform: translateY(101%); transition: transform 0.5s var(--ease-quint);
+  }
+  .btn:hover::before { transform: translateY(0); }
+  .btn-light { background: var(--color-ivory); color: var(--color-pine); }
+  .btn-light::before { background: var(--color-champagne); }
+  .btn-forest { background: var(--color-forest); color: var(--color-ivory); }
+  .btn-forest::before { background: var(--color-pine); }
+  .btn-champagne { background: var(--color-champagne); color: var(--color-pine); }
+  .btn-champagne::before { background: var(--color-champagne-soft); }
+  .btn-ghost-light { border: 1.5px solid rgb(245 242 234 / 0.5); color: var(--color-ivory); }
+  .btn-ghost-light::before { background: var(--color-ivory); }
+  .btn-ghost-light:hover { color: var(--color-pine); border-color: var(--color-ivory); }
+  .btn-ghost { border: 1.5px solid var(--color-charcoal); color: var(--color-charcoal); }
+  .btn-ghost::before { background: var(--color-charcoal); }
+  .btn-ghost:hover { color: var(--color-ivory); }
+
+  /* Underlined text link that draws its line on hover */
+  .link-line { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 0.45s var(--ease-quint); padding-bottom: 2px; }
+  .link-line:hover, .link-line[aria-current="page"] { background-size: 100% 1px; }
 
   .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    min-height: 42px;
-    padding: 0 1.1em;
-    border-radius: 999px;
-    border: 1.5px solid var(--color-line);
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--color-ink);
-    white-space: nowrap;
-    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5em; min-height: 40px; padding: 0 1em; border-radius: 999px;
+    border: 1px solid var(--color-hair); font-size: 0.92rem; color: var(--color-charcoal); white-space: nowrap;
+    transition: background-color 0.25s, border-color 0.25s, color 0.25s;
   }
-  .chip:hover { border-color: var(--color-fairway); }
-  .chip[aria-pressed="true"] { background: var(--color-fairway); border-color: var(--color-fairway); color: var(--color-ivory); }
+  .chip:hover { border-color: var(--color-charcoal); }
+  .chip[aria-pressed="true"] { background: var(--color-forest); border-color: var(--color-forest); color: var(--color-ivory); }
+
+  .field {
+    height: 50px; width: 100%; border-radius: 999px; border: 1px solid var(--color-hair); background: #fff;
+    padding: 0 1.2em; font-size: 0.98rem; color: var(--color-charcoal);
+  }
+  .field:focus { outline: none; border-color: var(--color-forest); box-shadow: 0 0 0 3px rgb(23 61 50 / 0.12); }
+
+  /* Fine paper grain over large green areas */
+  .grain { position: relative; }
+  .grain::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.09; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .mow { background-image: repeating-linear-gradient(-24deg, transparent 0 140px, rgb(255 255 255 / 0.025) 140px 280px); }
 }
 
-/* Custom cursor (only switched on for mouse users, see Cursor.tsx) */
-html.has-cursor,
-html.has-cursor * { cursor: none !important; }
-html.has-cursor input,
-html.has-cursor textarea { cursor: text !important; }
+/* Custom cursor (mouse users only, see Cursor.tsx) */
+html.has-cursor, html.has-cursor * { cursor: none !important; }
+html.has-cursor input, html.has-cursor textarea, html.has-cursor select { cursor: text !important; }
+html.has-cursor .admin, html.has-cursor .admin * { cursor: auto !important; }
 
-/* The quick view dialog */
-dialog.qv::backdrop { background: rgb(11 38 28 / 0.62); backdrop-filter: blur(3px); }
-dialog.qv[open] { animation: qv-in 0.45s var(--ease-quint); }
-@keyframes qv-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+dialog.sheet::backdrop { background: rgb(16 43 37 / 0.6); backdrop-filter: blur(4px); }
+dialog.sheet[open] { animation: sheet-in 0.5s var(--ease-quint); }
+@keyframes sheet-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
 
-/* The flag on the story mark flutters while you hover it */
 .flag-flutter { transform-origin: 0% 50%; transform-box: fill-box; }
 .mark-hover:hover .flag-flutter { animation: flutter 0.9s ease-in-out infinite; }
-@keyframes flutter {
-  0%, 100% { transform: skewY(0deg) scaleX(1); }
-  35% { transform: skewY(-5deg) scaleX(0.94); }
-  70% { transform: skewY(4deg) scaleX(1.03); }
-}
+@keyframes flutter { 0%, 100% { transform: skewY(0) scaleX(1); } 35% { transform: skewY(-5deg) scaleX(0.94); } 70% { transform: skewY(4deg) scaleX(1.03); } }
+
+@keyframes marquee { to { transform: translateX(-50%); } }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
