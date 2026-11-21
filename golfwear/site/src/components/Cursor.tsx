@@ -57,7 +57,7 @@ export function Cursor() {
       }
       dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
     };
-    const over = (e: PointerEvent) => { if (e.pointerType === 'mouse') setMode(modeFor(e.target)); };
+    const over = (e: PointerEvent) => { if (e.pointerType === 'mouse' && shown) setMode(modeFor(e.target)); };
     const out = (e: PointerEvent) => { if (!e.relatedTarget) { shown = false; setMode('hidden'); } };
     const down = () => gsap.to(ring.current, { scale: 0.85, duration: 0.15 });
     const up = () => gsap.to(ring.current, { scale: 1, duration: 0.3, ease: 'back.out(3)' });

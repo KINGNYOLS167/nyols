@@ -1,134 +1,236 @@
 @import "tailwindcss";
 
+/* ============================================================
+   GOLFWEAR design tokens
+   Palette: deep forest, dark pine, warm ivory, champagne, charcoal, white.
+   One typeface (Jost, from the brand kit); hierarchy comes from scale and weight.
+   ============================================================ */
 @theme {
-  --color-fairway: #12372A;   /* brand green: hero, leaderboard, story */
-  --color-rough: #0B261C;     /* deeper green: footer, pressed states */
-  --color-stripe: #1A4536;    /* raised rows on green */
-  --color-brass: #B8975A;     /* the flag: ranks, focus, primary buttons */
-  --color-brass-soft: #D9C69F;
-  --color-ivory: #F4EFE4;     /* light surface; text on green */
-  --color-chalk: #FBF8F2;
-  --color-sand: #E9E1D2;      /* behind product images */
-  --color-ink: #101614;       /* text on light */
-  --color-stone: #5C625C;     /* secondary text on light */
-  --color-moss: #A3B6A9;      /* secondary text on green */
-  --color-line: #DCD3C1;      /* hairlines on light */
+  --color-forest: #173D32;      /* brand green: primary actions, headings on light */
+  --color-forest-2: #1F4B3E;    /* hover on forest */
+  --color-pine: #102B25;        /* dark sections, announcement bar */
+  --color-pine-deep: #0B201B;   /* footer, overlays */
+  --color-ivory: #F5F2EA;       /* page background */
+  --color-ivory-2: #ECE7DB;     /* image wells, raised light surfaces */
+  --color-champagne: #C7B58A;   /* accents on dark, lines, the shot tracer */
+  --color-champagne-ink: #6F5D33; /* champagne-toned text on light (5.7:1) */
+  --color-charcoal: #222522;    /* body text */
+  --color-stone: #5F645E;       /* secondary text on light (5.4:1) */
+  --color-mist: #A7B6AD;        /* secondary text on dark (7.1:1) */
+  --color-white: #FFFFFF;
+  --color-line: rgb(34 37 34 / 0.13);
+  --color-line-dark: rgb(245 242 234 / 0.14);
+  --color-danger: #9A3A2A;
+
+  /* legacy names used by the 3D ball and older components */
+  --color-fairway: #173D32;
+  --color-rough: #102B25;
+  --color-brass: #C7B58A;
+  --color-moss: #A7B6AD;
+  --color-ink: #222522;
 
   --font-sans: "Jost", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --ease-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
   html {
-    background: var(--color-fairway);
+    background: var(--color-pine);
     -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
   }
   body {
     background: var(--color-ivory);
-    color: var(--color-ink);
+    color: var(--color-charcoal);
     font-family: var(--font-sans);
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
   }
   :focus-visible {
-    outline: 2px solid var(--color-brass);
+    outline: 2px solid var(--color-champagne);
     outline-offset: 3px;
   }
-  ::selection {
-    background: var(--color-brass);
-    color: var(--color-fairway);
+  .on-light :focus-visible, .bg-ivory :focus-visible, .bg-white :focus-visible {
+    outline-color: var(--color-forest);
   }
+  ::selection { background: var(--color-champagne); color: var(--color-pine); }
   summary::-webkit-details-marker { display: none; }
+  img { max-width: 100%; }
+  button { cursor: pointer; }
+  input, select, textarea, button { font: inherit; color: inherit; }
 }
 
 @layer components {
   .wrap {
     width: 100%;
-    max-width: 1320px;
+    max-width: 1440px;
     margin-inline: auto;
-    padding-inline: clamp(16px, 4vw, 40px);
+    padding-inline: clamp(16px, 4vw, 56px);
   }
 
-  /* Mown-fairway stripes: wide diagonal bands a shade apart */
-  .mow {
-    background-color: var(--color-fairway);
-    background-image:
-      radial-gradient(120% 80% at 78% 18%, rgb(244 239 228 / 0.07), transparent 60%),
-      repeating-linear-gradient(-24deg, transparent 0 140px, rgb(255 255 255 / 0.03) 140px 280px);
-  }
-
-  /* Type scale (perfect fourth, fluid at the top end) */
-  .display {
-    font-weight: 300;
-    letter-spacing: -0.022em;
-    line-height: 0.98;
-    font-size: clamp(2.9rem, 1.7rem + 5vw, 6.6rem);
-  }
-  .h2 {
+  /* ---- type scale (Jost, perfect-fourth steps, fluid at the top end) ---- */
+  .t-hero {
     font-weight: 400;
-    letter-spacing: -0.015em;
-    line-height: 1.06;
-    font-size: clamp(2.1rem, 1.5rem + 2.2vw, 3.4rem);
+    text-transform: uppercase;
+    letter-spacing: -0.045em;
+    line-height: 0.84;
+    font-size: clamp(3.6rem, 12.4vw, 13.5rem);
   }
-  .lede {
-    font-size: clamp(1.06rem, 0.98rem + 0.35vw, 1.25rem);
-    line-height: 1.55;
+  .t-display {
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    line-height: 0.94;
+    font-size: clamp(2.7rem, 1.6rem + 4.6vw, 6.2rem);
   }
+  .t-h2 {
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    font-size: clamp(2rem, 1.4rem + 2.4vw, 3.6rem);
+  }
+  .t-h3 {
+    font-weight: 400;
+    letter-spacing: -0.012em;
+    line-height: 1.15;
+    font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.7rem);
+  }
+  .t-lede {
+    font-weight: 300;
+    font-size: clamp(1.08rem, 1rem + 0.4vw, 1.32rem);
+    line-height: 1.5;
+  }
+  .t-small { font-size: 0.875rem; line-height: 1.5; }
+  .t-micro { font-size: 0.78rem; line-height: 1.4; letter-spacing: 0.01em; }
   .tnum { font-variant-numeric: tabular-nums; }
 
+  /* ---- buttons: squared, with a fill that slides in on hover ---- */
   .btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6em;
+    gap: 0.65em;
     min-height: 52px;
-    padding: 0 1.6em;
-    border-radius: 999px;
+    padding: 0 1.7em;
+    border-radius: 2px;
     font-weight: 500;
-    font-size: 1rem;
-    letter-spacing: 0.01em;
+    font-size: 0.96rem;
+    letter-spacing: 0.015em;
     white-space: nowrap;
-    transition: background-color 0.25s var(--ease-quint), color 0.25s var(--ease-quint), border-color 0.25s var(--ease-quint);
+    transition: color 0.45s var(--ease-quint), border-color 0.45s var(--ease-quint), background-color 0.3s;
   }
-  .btn-brass { background: var(--color-brass); color: var(--color-fairway); }
-  .btn-brass:hover { background: var(--color-brass-soft); }
-  .btn-line-light { border: 1.5px solid rgb(244 239 228 / 0.45); color: var(--color-ivory); }
-  .btn-line-light:hover { border-color: var(--color-ivory); background: rgb(244 239 228 / 0.06); }
-  .btn-green { background: var(--color-fairway); color: var(--color-ivory); }
-  .btn-green:hover { background: var(--color-rough); }
+  .btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.55s var(--ease-expo);
+  }
+  .btn:hover::before { transform: scaleX(1); transform-origin: left; }
+  .btn:disabled { opacity: 0.55; pointer-events: none; }
 
+  .btn-champagne { background: var(--color-champagne); color: var(--color-pine); }
+  .btn-champagne::before { background: var(--color-ivory); }
+  .btn-forest { background: var(--color-forest); color: var(--color-ivory); }
+  .btn-forest::before { background: var(--color-pine); }
+  .btn-outline-light { border: 1px solid rgb(245 242 234 / 0.5); color: var(--color-ivory); }
+  .btn-outline-light::before { background: var(--color-ivory); }
+  .btn-outline-light:hover { color: var(--color-pine); border-color: var(--color-ivory); }
+  .btn-outline { border: 1px solid var(--color-forest); color: var(--color-forest); }
+  .btn-outline::before { background: var(--color-forest); }
+  .btn-outline:hover { color: var(--color-ivory); }
+  .btn-sm { min-height: 42px; padding: 0 1.15em; font-size: 0.88rem; }
+
+  /* text link with a line that draws across on hover */
+  .link-line {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s var(--ease-expo);
+    padding-bottom: 2px;
+  }
+  .link-line:hover, .link-line[aria-current="page"] { background-size: 100% 1px; }
+  .link-under {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+  }
+
+  /* filter chips: pills, unlike buttons, because they toggle */
   .chip {
     display: inline-flex;
     align-items: center;
-    gap: 0.5em;
-    min-height: 42px;
-    padding: 0 1.1em;
+    gap: 0.45em;
+    min-height: 40px;
+    padding: 0 1em;
     border-radius: 999px;
-    border: 1.5px solid var(--color-line);
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--color-ink);
+    border: 1px solid var(--color-line);
+    font-size: 0.9rem;
     white-space: nowrap;
     transition: background-color 0.2s, border-color 0.2s, color 0.2s;
   }
-  .chip:hover { border-color: var(--color-fairway); }
-  .chip[aria-pressed="true"] { background: var(--color-fairway); border-color: var(--color-fairway); color: var(--color-ivory); }
+  .chip:hover { border-color: var(--color-forest); }
+  .chip[aria-pressed="true"] { background: var(--color-forest); border-color: var(--color-forest); color: var(--color-ivory); }
+
+  .field {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 0.9em;
+    border: 1px solid var(--color-line);
+    border-radius: 2px;
+    background: var(--color-white);
+  }
+  .field:focus-visible { outline: 2px solid var(--color-forest); outline-offset: 0; border-color: transparent; }
+
+  /* green-reading contour lines on dark sections */
+  .contours {
+    background-image: url("/textures/contours.svg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* film grain over photography */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.09;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .skeleton {
+    background: linear-gradient(100deg, var(--color-ivory-2) 40%, #f3efe6 50%, var(--color-ivory-2) 60%);
+    background-size: 220% 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
 }
 
-/* Custom cursor (only switched on for mouse users, see Cursor.tsx) */
-html.has-cursor,
-html.has-cursor * { cursor: none !important; }
-html.has-cursor input,
-html.has-cursor textarea { cursor: text !important; }
+@keyframes shimmer { to { background-position: -120% 0; } }
 
-/* The quick view dialog */
-dialog.qv::backdrop { background: rgb(11 38 28 / 0.62); backdrop-filter: blur(3px); }
-dialog.qv[open] { animation: qv-in 0.45s var(--ease-quint); }
-@keyframes qv-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+/* Custom cursor (switched on for mouse users only, see Cursor.tsx) */
+html.has-cursor, html.has-cursor * { cursor: none !important; }
+html.has-cursor input, html.has-cursor textarea { cursor: text !important; }
 
-/* The flag on the story mark flutters while you hover it */
+/* Dialogs */
+dialog.sheet::backdrop { background: rgb(11 32 27 / 0.6); backdrop-filter: blur(3px); }
+dialog.sheet[open] { animation: sheet-in 0.5s var(--ease-quint); }
+@keyframes sheet-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+/* The flag on the G mark flutters while hovered */
 .flag-flutter { transform-origin: 0% 50%; transform-box: fill-box; }
 .mark-hover:hover .flag-flutter { animation: flutter 0.9s ease-in-out infinite; }
 @keyframes flutter {
@@ -137,10 +239,14 @@ dialog.qv[open] { animation: qv-in 0.45s var(--ease-quint); }
   70% { transform: skewY(4deg) scaleX(1.03); }
 }
 
+/* Announcement ticker */
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

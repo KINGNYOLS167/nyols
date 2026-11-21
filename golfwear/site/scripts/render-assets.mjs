@@ -1,5 +1,4 @@
 // Renders the site's image assets from code:
-//   public/products/<id>-<colour>.webp   sample GOLFWEAR product mockups (studio style)
 //   public/ball/albedo-{2k,1k}.webp       the print on the 3D golf ball
 //   public/favicon.svg, apple-touch-icon.png, og.jpg
 // Run: npm run assets   (needs Playwright with Chromium, and Python 3 with Pillow)
@@ -13,7 +12,8 @@ const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/brand/paths.json'), 'utf8'));
-const { products } = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/catalog.json'), 'utf8'));
+// Product photos now come from the dashboard; the sample mockups this script used to draw are gone.
+const products = [];
 const C = P.colors;
 const TMP = path.join(ROOT, 'scripts/.render');
 fs.mkdirSync(TMP, { recursive: true });
@@ -227,4 +227,4 @@ Image.open(sys.argv[2]).convert("RGB").save(sys.argv[3], "JPEG", quality=88, opt
 `;
 execFileSync('python3', ['-c', py, JSON.stringify(toWebp), path.join(TMP, 'og.png'), path.join(ROOT, 'public/og.jpg')], { stdio: 'inherit' });
 fs.rmSync(TMP, { recursive: true, force: true });
-console.log(`Rendered ${toWebp.length - 2} product images, ball print, favicon, apple-touch-icon and og.jpg`);
+console.log(`Rendered the ball print, favicon, apple-touch-icon and og.jpg`);

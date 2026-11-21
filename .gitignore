@@ -11,3 +11,9 @@ node_modules/
 # Site build output
 golfwear/site/dist/
 golfwear/site/scripts/.render/
+
+# GOLFWEAR site: local database, server bundles, Vercel build output, test output
+golfwear/site/.data/
+golfwear/site/.server/
+golfwear/site/.vercel/
+golfwear/site/tests/output/

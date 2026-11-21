@@ -1,128 +1,99 @@
 import { useEffect, useRef, useState } from 'react';
-import { buyUrl, formatPrice, imageFor, whatsappLink, type Product } from '../data/products';
+import { buyUrl, hasDirectLink, type PublicProduct } from '../lib/catalog';
+import { Link } from '../lib/router';
 import { useLenis } from '../lib/motion';
 import { useLang } from '../i18n';
+import { ProductImage } from './Media';
+import { Availability, Price } from './Price';
 
-export interface QuickViewState { product: Product; colour: number }
-
-/** Product details in a native <dialog>: focus is trapped, Esc closes, the page behind stops scrolling. */
-export function QuickView({ state, onClose }: { state: QuickViewState | null; onClose: () => void }) {
+/** Quick product details in a dialog, opened from product cards. */
+export function QuickView({ product, onClose }: { product: PublicProduct | null; onClose: () => void }) {
+  const { t } = useLang();
   const ref = useRef<HTMLDialogElement>(null);
   const lenis = useLenis();
-  const [shown, setShown] = useState<QuickViewState | null>(state);
-  const [colour, setColour] = useState(0);
-  const [size, setSize] = useState('');
+  const [image, setImage] = useState(0);
 
   useEffect(() => {
-    const dialog = ref.current!;
-    if (state) {
-      setShown(state);
-      setColour(state.colour);
-      setSize('');
-      if (!dialog.open) dialog.showModal();
+    const d = ref.current;
+    if (!d) return;
+    if (product && !d.open) {
+      setImage(0);
+      d.showModal();
       lenis?.stop();
-    } else if (dialog.open) {
-      dialog.close();
-    }
-  }, [state, lenis]);
+    } else if (!product && d.open) d.close();
+  }, [product, lenis]);
 
-  const onDialogClose = () => { lenis?.start(); onClose(); };
+  useEffect(() => {
+    const d = ref.current;
+    if (!d) return;
+    const closed = () => { lenis?.start(); onClose(); };
+    d.addEventListener('close', closed);
+    return () => d.removeEventListener('close', closed);
+  }, [onClose, lenis]);
 
+  const p = product;
   return (
     <dialog
       ref={ref}
-      className="qv m-auto max-h-[calc(100svh-24px)] w-[min(1080px,calc(100vw-24px))] overflow-y-auto overscroll-contain rounded-[8px] bg-chalk p-0 text-ink max-sm:mb-0 max-sm:max-h-[94svh] max-sm:w-full max-sm:max-w-full max-sm:rounded-b-none"
-      data-lenis-prevent
-      onClose={onDialogClose}
-      onClick={(e) => { if (e.target === e.currentTarget) ref.current?.close(); }}
       aria-labelledby="qv-title"
+      className="sheet m-auto w-[min(980px,calc(100vw-24px))] max-w-none overflow-hidden rounded-[2px] bg-ivory p-0 text-charcoal backdrop:bg-transparent"
+      onClick={(e) => { if (e.target === e.currentTarget) ref.current?.close(); }}
     >
-      {shown && <Details state={shown} colour={colour} setColour={setColour} size={size} setSize={setSize} close={() => ref.current?.close()} />}
-    </dialog>
-  );
-}
-
-function Details({ state, colour, setColour, size, setSize, close }: {
-  state: QuickViewState; colour: number; setColour: (i: number) => void; size: string; setSize: (s: string) => void; close: () => void;
-}) {
-  const { t, pick, specs } = useLang();
-  const p = state.product;
-  const c = p.colors[Math.min(colour, p.colors.length - 1)];
-  const wa = whatsappLink(t('askText', { product: pick(p.name), colour: pick(c.name), size: size || '-' }));
-
-  return (
-    <div className="relative grid md:grid-cols-[1.08fr_1fr]">
-      <button type="button" onClick={close} aria-label={t('close')} className="absolute right-3 top-3 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-line bg-chalk/95 hover:border-fairway">
-        <svg viewBox="0 0 20 20" className="h-4 w-4" aria-hidden><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" strokeWidth="1.6" /></svg>
-      </button>
-      <div className="bg-sand p-3 md:p-4">
-        <div className="relative aspect-square overflow-hidden rounded-[4px] sm:aspect-[4/5]">
-          {p.colors.map((col, i) => (
-            <img key={col.key} src={imageFor(p, col)} alt={i === colour ? `${pick(p.name)}, ${pick(col.name)}` : ''} className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${i === colour ? 'opacity-100' : 'opacity-0'}`} />
-          ))}
-        </div>
-        <div className="mt-3 flex gap-2">
-          {p.colors.map((col, i) => (
-            <button key={col.key} type="button" onClick={() => setColour(i)} aria-label={t('colourOf', { name: pick(col.name) })} aria-pressed={i === colour}
-              className={`w-12 overflow-hidden rounded-[3px] ring-2 transition sm:w-16 ${i === colour ? 'ring-fairway' : 'ring-transparent hover:ring-line'}`}>
-              <img src={imageFor(p, col)} alt="" className="aspect-[4/5] w-full object-cover" />
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="flex flex-col p-6 sm:p-8 lg:p-10">
-        <h2 id="qv-title" className="pr-12 text-[1.75rem] font-normal leading-tight tracking-[-0.01em] text-fairway sm:text-[2rem]">{pick(p.name)}</h2>
-        <p className="mt-2 text-[1.2rem] tnum">
-          {formatPrice(p.price)}
-          {p.category === 'sleeves' && <span className="ml-2 text-[0.9rem] text-stone">{t('pair')}</span>}
-        </p>
-        <p className="mt-4 max-w-[48ch] text-stone">{pick(p.blurb)}</p>
-
-        <fieldset className="mt-7">
-          <legend className="text-[0.95rem] font-medium">{t('colour')}: <span className="font-normal text-stone">{pick(c.name)}</span></legend>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {p.colors.map((col, i) => (
-              <button key={col.key} type="button" onClick={() => setColour(i)} aria-pressed={i === colour} aria-label={pick(col.name)}
-                className={`flex h-10 w-10 items-center justify-center rounded-full ring-1 transition ${i === colour ? 'ring-fairway' : 'ring-line hover:ring-stone'}`}>
-                <span className="h-6 w-6 rounded-full ring-1 ring-black/15" style={{ background: col.stripe ? `repeating-linear-gradient(0deg, ${col.hex} 0 4px, ${col.stripe} 4px 7px)` : col.hex }} />
-              </button>
-            ))}
-          </div>
-        </fieldset>
-
-        <fieldset className="mt-6">
-          <legend className="text-[0.95rem] font-medium">{t('size')}</legend>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {p.sizes.map((s) => (
-              <button key={s} type="button" className="chip min-w-[52px] justify-center" aria-pressed={size === s} onClick={() => setSize(size === s ? '' : s)}>{s}</button>
-            ))}
-          </div>
-          <p className="mt-2 text-[0.88rem] text-stone">{t('sizeNote')}</p>
-        </fieldset>
-
-        {/* Spec card, laid out like a golf scorecard */}
-        <div className="mt-7 overflow-hidden rounded-[3px] border border-fairway/70">
-          <p className="bg-fairway px-4 py-2 text-[0.88rem] font-medium text-ivory">{t('specCard')}</p>
-          <dl className="grid grid-cols-[minmax(7rem,auto)_1fr] text-[0.95rem]">
-            {specs(p.specs).map(([k, v]) => (
-              <div key={k} className="contents">
-                <dt className="border-t border-fairway/20 bg-sand/70 px-4 py-2.5 text-stone">{k}</dt>
-                <dd className="border-l border-t border-fairway/20 px-4 py-2.5">{v}</dd>
+      {p && (
+        <div className="grid max-h-[88svh] overflow-y-auto md:grid-cols-2" data-lenis-prevent>
+          <div className="relative bg-ivory-2">
+            <ProductImage product={p} index={image} sizes="(min-width: 768px) 490px, 100vw" className="aspect-[4/5] h-full w-full" eager />
+            {p.images.length > 1 && (
+              <div className="absolute inset-x-0 bottom-4 flex justify-center gap-2">
+                {p.images.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    aria-label={t('showImage', { n: i + 1 })}
+                    aria-pressed={image === i}
+                    onClick={() => setImage(i)}
+                    className={`h-2 rounded-full transition-all ${image === i ? 'w-6 bg-pine' : 'w-2 bg-pine/35'}`}
+                  />
+                ))}
               </div>
-            ))}
-          </dl>
+            )}
+          </div>
+          <div className="flex flex-col p-6 sm:p-9">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                {p.brand && <p className="t-small text-stone">{p.brand.name}</p>}
+                <h2 id="qv-title" className="t-h3 mt-1">{p.name}</h2>
+              </div>
+              <button type="button" onClick={() => ref.current?.close()} aria-label={t('close')} className="-mr-2 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full hover:bg-ivory-2">
+                <svg viewBox="0 0 20 20" className="h-5 w-5" aria-hidden><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" strokeWidth="1.4" /></svg>
+              </button>
+            </div>
+            <div className="mt-4"><Price product={p} size="lg" /></div>
+            <div className="mt-2"><Availability product={p} detail /></div>
+            {p.sizes.length > 0 && (
+              <div className="mt-6">
+                <p className="t-small text-stone">{t('selectSize')}</p>
+                <ul className="mt-2 flex flex-wrap gap-2">
+                  {p.sizes.map((s) => (
+                    <li key={s.size} className={`t-small min-w-11 rounded-[2px] border px-3 py-2 text-center ${s.available ? 'border-line' : 'border-line text-stone/60 line-through'}`}>
+                      <span className="sr-only">{s.available ? '' : t('soldOutSize', { size: s.size })}</span>
+                      <span aria-hidden={!s.available}>{s.size}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {p.description && <p className="mt-6 line-clamp-5 whitespace-pre-line text-stone">{p.description}</p>}
+            <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row">
+              <a href={buyUrl(p)} target="_blank" rel="noopener" data-cursor="buy" className="btn btn-forest flex-1">
+                {hasDirectLink(p) ? t('buyTokopedia') : t('findTokopedia')}<span className="sr-only">{t('newTab')}</span>
+              </a>
+              <Link to={`/product/${p.slug}`} onClick={() => ref.current?.close()} className="btn btn-outline flex-1">{t('viewProduct')}</Link>
+            </div>
+            <p className="t-micro mt-4 text-stone">{t('payNote')}</p>
+          </div>
         </div>
-
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a href={buyUrl(p)} target="_blank" rel="noopener" data-cursor="buy" className="btn btn-brass flex-1">
-            <svg viewBox="0 0 12 14" className="h-4 w-3.5" aria-hidden><path d="M1 0v14" stroke="currentColor" strokeWidth="1.6" /><path d="M1.8 1 11 3.8 1.8 6.6z" fill="currentColor" /></svg>
-            {t('buy')}
-          </a>
-          {wa && <a href={wa} target="_blank" rel="noopener" className="btn btn-green flex-1">{t('ask')}</a>}
-        </div>
-        <p className="mt-3 text-[0.88rem] text-stone">{t('payNote')}</p>
-      </div>
-    </div>
+      )}
+    </dialog>
   );
 }

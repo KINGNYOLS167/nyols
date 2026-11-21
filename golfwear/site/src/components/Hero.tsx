@@ -1,101 +1,131 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap, prefersReducedMotion, SplitText, useGSAP } from '../lib/motion';
+import { intro } from '../lib/reveal';
+import { Link } from '../lib/router';
+import { useCatalog } from '../lib/catalog';
 import { useLang } from '../i18n';
 import { STORE } from '../config';
-import { Mark, Tagline } from './Logo';
+import { CampaignPicture } from './Media';
 import { Magnetic } from './Magnetic';
 
-const GolfBall = lazy(() => import('./GolfBall'));
+/**
+ * The ball's flight, drawn like a broadcast shot tracer, in each photo's own pixel space.
+ * It fades in as it climbs, so the low part never crosses the copy or the golfer.
+ */
+const TRACER = {
+  wide: { box: '0 0 1536 864', d: 'M1128 700 C1090 120, 700 40, 520 300', end: [520, 300], fade: [700, 470] },
+  tall: { box: '0 0 864 1536', d: 'M420 1395 C400 420, 600 330, 680 690', end: [680, 690], fade: [780, 600] },
+} as const;
 
-/** Shown only if WebGL is missing or the 3D ball is slow to load. */
-function BallFallback() {
-  return (
-    <div
-      aria-hidden
-      className="absolute left-1/2 top-1/2 aspect-square w-[68%] -translate-x-1/2 -translate-y-1/2 rounded-full"
-      style={{
-        backgroundImage:
-          'radial-gradient(circle at 34% 30%, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0) 42%), radial-gradient(circle, rgb(0 0 0 / 0.07) 34%, transparent 37%), radial-gradient(circle at 50% 50%, #f4f2ec 0%, #e3dfd4 64%, #b8b3a6 100%)',
-        backgroundSize: '100% 100%, 13px 13px, 100% 100%',
-        boxShadow: 'inset -16px -20px 40px rgb(0 0 0 / 0.16)',
-      }}
-    >
-      <Mark className="absolute left-1/2 top-[46%] w-[24%] -translate-x-1/2 -translate-y-1/2" />
-    </div>
-  );
+function usePortrait() {
+  const q = '(max-width: 767px) and (orientation: portrait)';
+  const [portrait, setPortrait] = useState(() => window.matchMedia(q).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(q);
+    const on = () => setPortrait(mq.matches);
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, []);
+  return portrait;
 }
 
 export function Hero() {
-  const { t, lang } = useLang();
+  const { t, lang, num } = useLang();
+  const { settings } = useCatalog();
   const root = useRef<HTMLElement>(null);
-  const shadow = useRef<HTMLDivElement>(null);
-  const [reduced] = useState(prefersReducedMotion);
-  const [ready, setReady] = useState(false);
-  const [failed, setFailed] = useState(false);
-  const [slow, setSlow] = useState(false);
-  useEffect(() => {
-    const id = window.setTimeout(() => setSlow(true), 1600);
-    return () => window.clearTimeout(id);
-  }, []);
-  const showFallback = failed || (slow && !ready);
-  const num = (n: number) => n.toLocaleString(lang === 'id' ? 'id-ID' : 'en-US');
+  const portrait = usePortrait();
+  const tracer = portrait ? TRACER.tall : TRACER.wide;
+  const s = settings.store;
+  const statsDate = s.statsDate ? new Date(s.statsDate + 'T00:00:00').toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-GB', { month: 'long', year: 'numeric' }) : '';
 
-  // The page's one orchestrated moment: the headline rises line by line while the ball drops.
+  // The page's one orchestrated entrance: headline rises, the tracer draws the shot, the copy settles.
   useGSAP(() => {
-    if (reduced) return;
-    const split = SplitText.create('.hero-title', {
-      type: 'lines',
-      mask: 'lines',
-      autoSplit: true,
-      onSplit: (self) => gsap.from(self.lines, { yPercent: 110, duration: 1.1, ease: 'expo.out', stagger: 0.1, delay: 0.1, onComplete: () => self.revert() }),
-    });
-    gsap.from('.hero-rise', { autoAlpha: 0, y: 16, duration: 0.9, ease: 'power3.out', stagger: 0.08, delay: 0.5 });
-    return () => split.revert();
-  }, { scope: root, dependencies: [lang], revertOnUpdate: true });
+    const el = root.current!;
+    const path = el.querySelector<SVGPathElement>('.tracer-path');
+    const dot = el.querySelector('.tracer-dot');
+    if (prefersReducedMotion()) return;
+    const split = SplitText.create(el.querySelectorAll('.hero-line'), { type: 'chars', mask: 'chars' });
+    const len = path?.getTotalLength() ?? 0;
+    gsap.set(split.chars, { yPercent: 110 });
+    gsap.set('.hero-rise', { autoAlpha: 0, y: 18 });
+    if (path) gsap.set(path, { strokeDasharray: len, strokeDashoffset: len });
+    gsap.set(dot, { autoAlpha: 0, scale: 0.3, transformOrigin: '50% 50%' });
+    const play = () => {
+      const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+      tl.to(split.chars, { yPercent: 0, duration: 1.25, stagger: 0.035 })
+        .to(path, { strokeDashoffset: 0, duration: 2, ease: 'power2.inOut' }, 0.15)
+        .to(dot, { autoAlpha: 1, scale: 1, duration: 0.5, ease: 'back.out(3)' }, 2.05)
+        .to('.hero-rise', { autoAlpha: 1, y: 0, duration: 1, stagger: 0.08 }, 0.6);
+    };
+    const stop = intro.wait(play);
+
+    // Parallax: the photo drifts slower than the page; the copy lifts away a little faster.
+    gsap.to('.hero-media', { yPercent: 14, ease: 'none', scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('.hero-copy', { y: -90, autoAlpha: 0.2, ease: 'none', scrollTrigger: { trigger: el, start: 'center center', end: 'bottom top', scrub: true } });
+    return () => { stop(); split.revert(); };
+  }, { scope: root, dependencies: [lang, portrait], revertOnUpdate: true });
 
   return (
-    <section id="top" ref={root} className="mow relative overflow-hidden text-ivory">
-      <div className="wrap grid min-h-[100svh] grid-cols-1 gap-x-10 pb-16 pt-[128px] lg:grid-cols-12 lg:grid-rows-[1fr_auto_1fr] lg:pb-14 lg:pt-[118px]">
-        <div className="relative z-10 lg:col-span-6 lg:row-start-1 lg:self-end">
-          <Tagline className="hero-rise" />
-          <h1 key={lang} className="hero-title display mt-7 max-w-[11ch]">{t('heroTitle')}</h1>
-        </div>
+    <section ref={root} aria-labelledby="hero-title" className="relative overflow-hidden bg-pine text-ivory md:h-[100svh] md:min-h-[620px]">
+      {/* Phones: the photo carries the headline and the copy sits below it. Wider: copy over the photo. */}
+      <div className="hero-media absolute inset-x-0 top-0 h-[86svh] md:-top-[6%] md:h-[112%]">
+        <CampaignPicture
+          name="hero"
+          mobile="hero-portrait"
+          alt={t('heroImageAlt')}
+          sizes="100vw"
+          eager
+          className="grain absolute inset-0 block"
+          imgClassName="h-full w-full object-cover"
+        />
+        <svg aria-hidden viewBox={tracer.box} preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full overflow-visible">
+          <defs>
+            <filter id="tracer-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3" /></filter>
+            <linearGradient id="tracer-fade" gradientUnits="userSpaceOnUse" x1="0" y1={tracer.fade[0]} x2="0" y2={tracer.fade[1]}>
+              <stop offset="0" stopColor="#F5F2EA" stopOpacity="0" />
+              <stop offset="1" stopColor="#F5F2EA" stopOpacity="1" />
+            </linearGradient>
+            <mask id="tracer-mask" maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="6000" height="6000">
+              <rect x="-2000" y="-2000" width="6000" height="6000" fill="url(#tracer-fade)" />
+            </mask>
+          </defs>
+          <path d={tracer.d} fill="none" stroke="#C7B58A" strokeOpacity="0.5" strokeWidth="5" filter="url(#tracer-glow)" className="tracer-path" mask="url(#tracer-mask)" />
+          <path d={tracer.d} fill="none" stroke="url(#tracer-fade)" strokeWidth="1.6" strokeLinecap="round" className="tracer-path" />
+          <g className="tracer-dot">
+            <circle cx={tracer.end[0]} cy={tracer.end[1]} r="9" fill="#C7B58A" fillOpacity="0.35" />
+            <circle cx={tracer.end[0]} cy={tracer.end[1]} r="3.5" fill="#F5F2EA" />
+          </g>
+        </svg>
+        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(to_top,var(--color-pine)_0%,rgb(16_43_37/0.55)_24%,transparent_52%),linear-gradient(to_bottom,rgb(11_32_27/0.6),transparent_24%)] md:hidden" />
+      </div>
+      <div aria-hidden className="absolute inset-0 hidden bg-[linear-gradient(to_top,rgb(11_32_27/0.92)_0%,rgb(11_32_27/0.55)_30%,rgb(11_32_27/0)_62%),linear-gradient(to_bottom,rgb(11_32_27/0.55),transparent_22%)] md:block" />
 
-        <div className="relative mx-auto -mb-4 -mt-2 aspect-square w-[min(80vw,380px)] lg:col-span-6 lg:col-start-7 lg:row-span-3 lg:row-start-1 lg:mt-0 lg:w-full lg:max-w-[660px] lg:self-center">
-          <div
-            ref={shadow}
-            aria-hidden
-            className="absolute left-1/2 top-[80%] h-[9%] w-[52%] rounded-[50%]"
-            style={{ background: 'radial-gradient(closest-side, rgb(4 18 12 / 0.6), transparent)', opacity: showFallback ? 0.75 : 0, transform: 'translateX(-50%)' }}
-          />
-          {showFallback && <BallFallback />}
-          {!failed && (
-            <Suspense fallback={null}>
-              <GolfBall shadow={shadow} label={t('ballLabel')} reduced={reduced} onReady={() => setReady(true)} onFail={() => setFailed(true)} />
-            </Suspense>
-          )}
-          {ready && (
-            <p className="pointer-events-none absolute bottom-[2%] left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap text-[0.85rem] text-moss">
-              <svg viewBox="0 0 24 12" className="h-3 w-6" aria-hidden><path d="M1 6h22M5 2 1 6l4 4M19 2l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.4" /></svg>
-              {t('ballHint')}
-            </p>
-          )}
-        </div>
-
-        <div className="relative z-10 lg:col-span-6 lg:row-start-2">
-          <p className="hero-rise lede mt-6 max-w-[38ch] text-ivory/80 lg:mt-8">{t('heroBody')}</p>
-          <div className="hero-rise mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Magnetic><a href="#best" className="btn btn-brass w-full sm:w-auto">{t('heroBest')}</a></Magnetic>
-            <Magnetic>
-              <a href={STORE.tokopediaUrl} target="_blank" rel="noopener" data-cursor="buy" className="btn btn-line-light w-full sm:w-auto">{t('heroStore')}</a>
-            </Magnetic>
+      <div className="hero-copy wrap relative flex flex-col pb-16 pt-[60svh] md:h-full md:justify-end md:pb-[clamp(28px,6vh,64px)] md:pt-36">
+        <h1 id="hero-title" className="t-hero [text-shadow:0_2px_40px_rgb(11_32_27/0.3)]">
+          <span className="hero-line block">Beyond</span>
+          <span className="hero-line block md:pl-[1.15em]">the game.</span>
+        </h1>
+        <div className="mt-8 grid gap-8 md:mt-12 md:grid-cols-12 md:items-end">
+          <div className="hero-rise md:order-2 md:col-span-6 md:col-start-7 lg:col-span-5 lg:col-start-8">
+            <p className="t-lede max-w-[36ch] text-ivory/88">{t('heroBody')}</p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Magnetic strength={0.2}><Link to="/shop" className="btn btn-champagne w-full sm:w-auto">{t('heroShop')}</Link></Magnetic>
+              <Magnetic strength={0.2}>
+                <a href={STORE.tokopediaUrl} target="_blank" rel="noopener" data-cursor="buy" className="btn btn-outline-light w-full sm:w-auto">
+                  {t('heroStore')}<span className="sr-only">{t('newTab')}</span>
+                </a>
+              </Magnetic>
+            </div>
           </div>
+          {s.rating !== null && (
+            <dl className="hero-rise grid max-w-md grid-cols-3 gap-6 border-t border-ivory/20 pt-5 md:order-1 md:col-span-5">
+              <div><dt className="t-micro text-mist first-letter:uppercase">{t('heroRating')}</dt><dd className="tnum mt-1 text-[1.5rem] font-light">{num(s.rating)}<span className="text-[0.9rem] text-mist">/5</span></dd></div>
+              {s.reviews !== null && <div><dt className="t-micro text-mist first-letter:uppercase">{t('heroReviews')}</dt><dd className="tnum mt-1 text-[1.5rem] font-light">{num(s.reviews)}</dd></div>}
+              {s.sold !== null && <div><dt className="t-micro text-mist first-letter:uppercase">{t('heroSold')}</dt><dd className="tnum mt-1 text-[1.5rem] font-light">{num(s.sold)}+</dd></div>}
+              {statsDate && <p className="t-micro col-span-3 -mt-3 text-mist/80">{t('heroStatsSource', { date: statsDate })}</p>}
+            </dl>
+          )}
         </div>
-
-        <p className="hero-rise relative z-10 mt-10 flex max-w-[46ch] items-start gap-2.5 text-[0.95rem] leading-snug text-moss lg:col-span-6 lg:row-start-3 lg:mt-12 lg:self-start">
-          <svg viewBox="0 0 20 20" className="mt-0.5 h-4 w-4 shrink-0 text-brass" aria-hidden><path fill="currentColor" d="m10 1.5 2.6 5.5 6 .7-4.4 4.1 1.2 5.9L10 14.8l-5.4 2.9 1.2-5.9L1.4 7.7l6-.7z" /></svg>
-          <span>{t('heroTrust', { rating: num(STORE.stats.rating), reviews: num(STORE.stats.reviews), sold: num(STORE.stats.sold) })}</span>
-        </p>
       </div>
     </section>
   );
