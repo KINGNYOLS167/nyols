@@ -48,7 +48,7 @@ function RangeOnTokopedia() {
         <CampaignPicture name="flag" alt={t('edAlt4')} sizes="(min-width: 768px) 50vw, 100vw" imgClassName="aspect-[3/2] w-full object-cover" />
       </div>
       <div className="md:col-span-5 md:col-start-8">
-        <p className="t-h2 text-forest">{t('emptyRangeTitle')}</p>
+        <h2 className="t-h2 text-forest">{t('emptyRangeTitle')}</h2>
         <p className="mt-5 max-w-[42ch] text-stone">{t('emptyRangeBody')}</p>
         <a href={STORE.tokopediaUrl} target="_blank" rel="noopener" data-cursor="buy" className="btn btn-forest mt-8">{t('heroStore')}<span className="sr-only">{t('newTab')}</span></a>
       </div>
@@ -64,15 +64,16 @@ function TopProducts() {
   const scope = useScrollMotion<HTMLElement>([status, ranking]);
   const sales = ranking === 'sales';
   return (
-    <section ref={scope} aria-labelledby="top-title" className="bg-ivory">
+    <section ref={scope} aria-labelledby={status === 'ready' && top.length === 0 ? undefined : 'top-title'} className="bg-ivory">
       <div className="wrap py-20 lg:py-32">
-        <div className="mb-10 flex flex-wrap items-end justify-between gap-6 lg:mb-14">
+        {/* With nothing listed yet there is no selection to title: the Tokopedia panel stands alone. */}
+        {!(status === 'ready' && top.length === 0) && <div className="mb-10 flex flex-wrap items-end justify-between gap-6 lg:mb-14">
           <div>
             <RevealText id="top-title" className="t-display text-forest">{sales ? t('bestTitle') : t('featuredTitle')}</RevealText>
             <p className="mt-4 text-stone">{sales ? t('bestNote') : t('featuredNote')}</p>
           </div>
           {top.length > 0 && <Link to={sales ? '/shop?sort=popular' : '/shop'} className="link-under font-medium text-forest">{t('viewAll')}</Link>}
-        </div>
+        </div>}
         {status === 'loading' ? (
           <div className="grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-12 lg:gap-x-6" aria-busy="true" aria-label={t('loadingProducts')}>
             <div className="col-span-2 lg:col-span-6 lg:row-span-2"><ProductCardSkeleton large /></div>

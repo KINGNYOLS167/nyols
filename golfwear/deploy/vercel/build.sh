@@ -1,15 +1,18 @@
 #!/bin/sh
-# Builds the GOLFWEAR site from the public GitHub branch and puts the result in ./dist
+# Builds GOLFWEAR (storefront, dashboard and API) from the public GitHub branch into a Vercel
+# Build Output in ./.vercel/output: static files, one Node.js function for /api, and the routes.
+# Override the branch with GOLFWEAR_REF in the project's environment variables.
 set -eu
 REPO=KINGNYOLS167/nyols
-REF=add-21st-plugin
-rm -rf src dist src.tgz
+REF="${GOLFWEAR_REF:-claude/keen-knuth-2kevc4}"
+rm -rf src src.tgz .vercel/output
 mkdir -p src
 curl -fsSL "https://codeload.github.com/$REPO/tar.gz/refs/heads/$REF" -o src.tgz
 tar -xzf src.tgz -C src --strip-components=1
 cd src/golfwear/site
 npm ci --include=dev --no-audit --no-fund
-npm run build
+npm run build:vercel
 cd ../../..
-cp -r src/golfwear/site/dist dist
+mkdir -p .vercel
+cp -r src/golfwear/site/.vercel/output .vercel/output
 echo "Built $REPO@$REF"

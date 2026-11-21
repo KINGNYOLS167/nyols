@@ -665,7 +665,9 @@ export async function deleteSubscriber(q: Q, id: number) {
 
 export async function putMedia(q: Q, mime: string, bytes: Uint8Array) {
   const id = randomUUID().replace(/-/g, '');
-  await q(`insert into media (id, mime, bytes, size) values ($1, $2, $3, $4)`, [id, mime, bytes, bytes.byteLength]);
+  // A Buffer is what postgres.js sends as bytea (PGlite accepts it too).
+  const buf = Buffer.from(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  await q(`insert into media (id, mime, bytes, size) values ($1, $2, $3, $4)`, [id, mime, buf, buf.byteLength]);
   return { id, url: `/api/media/${id}` };
 }
 

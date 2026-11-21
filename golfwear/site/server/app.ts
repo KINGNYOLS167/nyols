@@ -6,7 +6,7 @@ import { getDb, type Db } from './db';
 import { authConfigured, COOKIE, cookieHeader, createSession, passwordMatches, recordAttempt, tooManyAttempts, verifySession } from './auth';
 import * as repo from './repo';
 import { EMAIL, InputError, toCsv } from './util';
-import { EXPENSE_CATEGORIES, REVENUE_STATUSES } from '../shared/domain';
+import { DEFAULT_ANNOUNCEMENTS, DEFAULT_STORE, EXPENSE_CATEGORIES, REVENUE_STATUSES, type CatalogPayload } from '../shared/domain';
 
 type Env = { Variables: { db: Db } };
 const app = new Hono<Env>().basePath('/api');
@@ -43,9 +43,16 @@ app.get('/health', async (c) => {
   return c.json({ ok: true, database: state.ok ? 'connected' : state.reason }, 200, noStore);
 });
 
-app.get('/catalog', withDb, async (c) => {
-  const payload = await repo.publicCatalog(c.var.db.query);
-  return c.json(payload, 200, { 'Cache-Control': 'public, max-age=0, s-maxage=30, stale-while-revalidate=300' });
+app.get('/catalog', async (c) => {
+  const cache = { 'Cache-Control': 'public, max-age=0, s-maxage=30, stale-while-revalidate=300' };
+  const state = await getDb();
+  // Before a database is connected the store simply has nothing listed yet: answer that plainly.
+  if (!state.ok && state.reason === 'not_configured') {
+    const empty: CatalogPayload = { products: [], brands: [], ranking: 'featured', settings: { announcements: DEFAULT_ANNOUNCEMENTS, store: DEFAULT_STORE }, updatedAt: new Date().toISOString() };
+    return c.json(empty, 200, cache);
+  }
+  if (!state.ok) return c.json({ error: state.message, reason: state.reason }, 503, noStore);
+  return c.json(await repo.publicCatalog(state.db.query), 200, cache);
 });
 
 app.post('/newsletter', withDb, async (c) => {

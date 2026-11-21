@@ -1,44 +1,58 @@
 # GOLFWEAR website
 
-Shoppers browse here and buy on Tokopedia. Built with React, Vite, Tailwind CSS, GSAP, Lenis and
-three.js.
+The GOLFWEAR storefront, where shoppers browse and then buy on Tokopedia, and the owner's
+private business dashboard. React, Vite, Tailwind CSS, GSAP and Lenis in the browser; a small
+Hono API with Postgres behind it.
 
-What's on the page:
+**Live: https://golfwear.vercel.app** · deployment and one-time setup: `../deploy/vercel/README.md`
 
-- **Hero:** a 3D golf ball with the GOLFWEAR print. It drops onto the green when the page loads.
-  Drag it to spin, tap it to make it hop; it leans toward the cursor. Arrow keys and Enter work too.
-- **Best sellers:** a tournament-style leaderboard, ranked by `rank` in the catalogue.
-- **All products:** filter by arm sleeves, men's polos and women's polos, sort and search. Opening a
-  product shows its colours, sizes, a scorecard-style spec card and a **Buy on Tokopedia** button.
-- **About**, **How to order** and **Questions**, then the footer.
-- Bahasa Indonesia and English (the ID/EN switch), a custom cursor and magnetic buttons for mouse
-  users, smooth scrolling. Everything still works with a keyboard, on touch screens and with
-  reduced motion turned on.
+## The store
 
-## Before you launch: replace the sample products
+- **Home:** rotating announcement bar; cinematic hero ("Beyond the game.") with a shot tracer
+  drawn over the photo; best sellers, ranked only by real units sold (recorded sales plus the
+  Tokopedia sold count you enter), or a clearly titled **Featured** selection until there are
+  sales; shop by category; shop by brand; an editorial campaign; how ordering works; newsletter.
+- **Shop** (`/shop`), **collections** (`/collections/polo-shirts`, `short-sleeve`, `long-sleeve`,
+  `trousers`, `shorts`, `outerwear`, `accessories`, `new-arrivals`) and **brand pages**
+  (`/brands/<brand>`): search, filters for category, brand, gender, size, price, availability and
+  sale, and sorting by popularity, newest and price. Filters live in the URL, so links can be shared.
+- **Product pages** (`/product/<slug>`): gallery, sizes with availability, colours, description,
+  specifications, **Buy on Tokopedia** to the exact listing. A product without a Tokopedia link
+  opens the store page instead, and says so.
+- **About** (`/about`): the story, the interactive 3D golf ball, ordering steps and questions.
+- Bahasa Indonesia and English, a custom cursor and magnetic buttons for mouse users, smooth
+  scrolling, scroll and text reveals. Keyboard, touch and reduced-motion users get the same store
+  without the motion.
 
-The ten products in `src/data/catalog.json` are **samples**: made-up GOLFWEAR items with drawn
-mockups, so the page has something to show. While any product has `"sample": true`, a bar at the
-top of the page says so.
+Nothing on the store is invented: products, brands, prices and stock come from the dashboard.
+Until products are published, sections that need them point shoppers to the Tokopedia store.
 
-For each real product:
+## The dashboard (`/admin`, owner only)
 
-1. Add it to `src/data/catalog.json` (copy an existing entry). The fields:
-   - `rank`: 1 = best seller. It orders the leaderboard and the default sort.
-   - `category`: `sleeves`, `polo-men` or `polo-women`.
-   - `name`, `blurb`: in `id` and `en`.
-   - `price` in rupiah, `colors`, `sizes`.
-   - `specs`: `sleeve`, `polo` or `pique` (the rows are in `src/i18n.tsx`).
-   - `tokopediaUrl`: the product's listing. Open it in your store and copy the address.
-2. Put one photo per colour in `public/products/`, named `<id>-<colour key>.webp`, portrait 4:5
-   (for example 900 × 1125). Or set `"image": "/products/your-file.jpg"` on the colour.
-3. Remove the `"sample": true` line. When no product has it, the preview bar disappears.
+Not linked from the store, `noindex`, and every request behind it needs the owner's session
+(password in the `ADMIN_PASSWORD` environment variable; signed, HttpOnly cookie; sign-in attempts
+are rate limited).
 
-Store-wide settings (the Tokopedia store link, WhatsApp number, Instagram, the rating shown in the
-hero) are in `src/config.ts`. Adding a WhatsApp number adds an **Ask on WhatsApp** button to every
-product.
+- **Overview:** revenue, expenses, gross and net profit, margins, monthly charts, top products,
+  pending orders and stock alerts, per year.
+- **Sales:** one row per product per order (date, product, brand, size, quantity, price, discount,
+  status, marketplace reference). Recording a sale can take units out of stock; cancelling or
+  returning it puts them back.
+- **Expenses:** product acquisition, shipping, operational, marketing, other.
+- **Inventory:** stock per size, low and out-of-stock flags, restocks (ordered or received; a
+  received restock adds stock and can record its cost as an acquisition expense).
+- **Products and brands:** the catalogue the store shows, with photo upload, Tokopedia links,
+  sizes and stock, and **Import** from a CSV (download the template there) or from the JSON made
+  by `../scripts/parse_tokopedia.py`.
+- **Reports:** monthly and yearly summaries; CSV exports of sales, expenses, monthly and yearly
+  reports, inventory, products and newsletter sign-ups (UTF-8, open in Excel or Google Sheets).
+- **Newsletter** sign-ups and **Settings** (announcements, contact links, Tokopedia store figures).
 
-## Run it
+How the money is counted: revenue is quantity × price minus discounts for orders marked
+processing, shipped or completed. Gross profit is revenue minus product acquisition; net profit
+is revenue minus all expenses. Costs count in the month they were paid.
+
+## Run it locally
 
 ```bash
 npm install
@@ -48,33 +62,61 @@ npm install
 npm run dev
 ```
 
-Open the address it prints. To check the production build:
+The dev server includes the API and an embedded Postgres (PGlite) stored in `.data/`. To open the
+dashboard locally, start it with a password:
 
 ```bash
-npm run build
+ADMIN_PASSWORD=choose-a-local-password npm run dev
 ```
+
+`DATABASE_URL=postgres://…` uses a real Postgres instead. To try a production build:
 
 ```bash
 npm run preview
 ```
 
-## Put it online
+## Tests
 
-**Live: https://golfwear.vercel.app** (Vercel project `golfwear`). How it's deployed, and how to
-redeploy after a push: `../deploy/vercel/README.md`.
+`tests/e2e.mjs` drives the built site in Chromium (storefront, filters, product pages, links,
+newsletter, dashboard sign-in, sales, stock, exports, phone layout, reduced motion, console
+errors). It runs against `tests/vercel-harness.mjs`, which serves the exact Vercel build output:
 
-`npm run build` writes a static site to `dist/`. Any static host serves it: Vercel, Netlify and
-Cloudflare Pages can all build it straight from this folder (build command `npm run build`,
-output folder `dist`).
+```bash
+npm run build:vercel
+```
 
-## Regenerating the images
+```bash
+DATABASE_URL=postgres://… ADMIN_PASSWORD=test-password-123 node tests/vercel-harness.mjs
+```
 
-The sample product mockups, the golf ball's print and dimples, the favicon and the share image are
-drawn by scripts, from the logo in `../brand`:
+```bash
+npm run test:e2e
+```
+
+`tests/seed.mjs` fills a local database with clearly labelled test data. It refuses to run
+against the live site.
+
+## Design system
+
+- **Colour** (`src/styles.css`): deep forest `#173D32`, dark pine `#102B25`, warm ivory `#F5F2EA`,
+  champagne `#C7B58A`, charcoal `#222522`, white. Champagne is an accent on dark surfaces; on
+  ivory, champagne-toned text uses `#6F5D33`. Every text pairing meets WCAG AA.
+- **Type:** Jost (the brand kit's typeface) only. Hierarchy comes from scale and weight:
+  `t-hero`, `t-display`, `t-h2`, `t-h3`, `t-lede`, `t-small`, `t-micro`.
+- **Graphic language:** green-reading contour lines (`public/textures/contours.svg`, drawn by
+  `scripts/contours.py`) on dark sections, film grain on photography, the shot tracer in the hero.
+- **Motion** (`src/lib/motion.tsx`, `src/lib/reveal.ts`): one orchestrated entrance in the hero,
+  line reveals on section titles, image reveals and gentle parallax on scroll, magnetic buttons
+  and a contextual cursor for mouse users. All of it is off with reduced motion.
+- **Campaign photography** (`public/campaign/`) was generated for this site; it shows no products
+  and can be replaced with real shoots at the same file names.
+
+## Regenerating images
 
 ```bash
 npm run assets
 ```
 
-It needs Playwright with Chromium, and Python 3 with Pillow and NumPy. You don't need it for real
-product photos: just drop those into `public/products/`.
+Re-renders the golf ball's print, the favicon and the share image from `../brand` (needs
+Playwright with Chromium, and Python 3 with Pillow and NumPy). `python3 scripts/contours.py`
+redraws the contour texture.

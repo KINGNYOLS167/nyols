@@ -93,7 +93,7 @@ export function MonthlyColumns({ months, year }: { months: Finance[]; year: numb
   return (
     <div ref={ref} className="relative">
       {width > 0 && (
-        <svg width={width} height={height} role="img" aria-label={`Revenue and expenses by month, ${year}. The table below lists every value.`}>
+        <svg width={width} height={height} role="group" aria-label={`Revenue and expenses by month, ${year}. The table below lists every value.`}>
           {tk.map((v) => (
             <g key={v}>
               <line x1={PAD.left} x2={width - PAD.right} y1={y(v)} y2={y(v)} stroke={v === 0 ? C.axis : C.grid} strokeWidth="1" shapeRendering="crispEdges" />
@@ -109,7 +109,7 @@ export function MonthlyColumns({ months, year }: { months: Finance[]; year: numb
                 <path d={bar(cx + 1, base, y(m.totalExpenses), bw)} fill={C.expenses} />
                 <text x={cx} y={height - 8} textAnchor="middle" fontSize="11" fill={C.muted}>{compactLabels ? MONTHS[i][0] : MONTHS[i]}</text>
                 <rect
-                  x={PAD.left + band * i} y={PAD.top} width={band} height={plotH} fill="transparent" tabIndex={0}
+                  x={PAD.left + band * i} y={PAD.top} width={band} height={plotH} fill="transparent" tabIndex={0} role="img"
                   aria-label={`${MONTHS_LONG[i]} ${year}: revenue ${rp(m.revenue)}, expenses ${rp(m.totalExpenses)}, net profit ${rp(m.netProfit)}`}
                   onPointerEnter={() => setHover(i)} onPointerLeave={() => setHover(null)} onFocus={() => setHover(i)} onBlur={() => setHover(null)}
                   className="outline-none focus-visible:stroke-forest focus-visible:[stroke-width:1.5]"
@@ -153,7 +153,7 @@ export function NetProfitColumns({ months, year }: { months: Finance[]; year: nu
   return (
     <div ref={ref} className="relative">
       {width > 0 && (
-        <svg width={width} height={height} role="img" aria-label={`Net profit by month, ${year}. Bars above zero are profit, below are loss. The table below lists every value.`}>
+        <svg width={width} height={height} role="group" aria-label={`Net profit by month, ${year}. Bars above zero are profit, below are loss. The table below lists every value.`}>
           {tk.map((v) => (
             <g key={v}>
               <line x1={PAD.left} x2={width - PAD.right} y1={y(v)} y2={y(v)} stroke={v === 0 ? C.axis : C.grid} strokeWidth="1" shapeRendering="crispEdges" />
@@ -167,7 +167,7 @@ export function NetProfitColumns({ months, year }: { months: Finance[]; year: nu
                 <path d={bar(cx - bw / 2, y(0), y(m.netProfit), bw)} fill={m.netProfit >= 0 ? C.profit : C.loss} />
                 <text x={cx} y={height - 8} textAnchor="middle" fontSize="11" fill={C.muted}>{band < 34 ? MONTHS[i][0] : MONTHS[i]}</text>
                 <rect
-                  x={PAD.left + band * i} y={PAD.top} width={band} height={plotH} fill="transparent" tabIndex={0}
+                  x={PAD.left + band * i} y={PAD.top} width={band} height={plotH} fill="transparent" tabIndex={0} role="img"
                   aria-label={`${MONTHS_LONG[i]} ${year}: net ${m.netProfit >= 0 ? 'profit' : 'loss'} ${rp(Math.abs(m.netProfit))}`}
                   onPointerEnter={() => setHover(i)} onPointerLeave={() => setHover(null)} onFocus={() => setHover(i)} onBlur={() => setHover(null)}
                   className="outline-none focus-visible:stroke-forest focus-visible:[stroke-width:1.5]"

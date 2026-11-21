@@ -71,12 +71,16 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
         </form>
         <div className="wrap grid gap-10 py-8 md:grid-cols-12">
           <div className="md:col-span-4">
-            <p className="t-small text-stone">{t('searchCollections')}</p>
-            <ul className="mt-3">
-              {cols.map((c) => (
-                <li key={c}><Link to={`/collections/${c}`} onClick={close} className="link-line inline-block py-1.5 text-[1.1rem]">{t(`col.${c}` as Key)}</Link></li>
-              ))}
-            </ul>
+            {cols.length > 0 && (
+              <>
+                <p className="t-small text-stone">{t('searchCollections')}</p>
+                <ul className="mt-3">
+                  {cols.map((c) => (
+                    <li key={c}><Link to={`/collections/${c}`} onClick={close} className="link-line inline-block py-1.5 text-[1.1rem]">{t(`col.${c}` as Key)}</Link></li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
           <div className="md:col-span-8" aria-live="polite">
             {q.trim() && (

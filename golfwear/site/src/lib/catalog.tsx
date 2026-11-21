@@ -34,6 +34,8 @@ export function CatalogProvider({ children }: { children: ReactNode }) {
     setStatus('loading');
     fetch('/api/catalog', { headers: { accept: 'application/json' } })
       .then(async (r) => {
+        // No database connected yet: the store simply has no products listed here, which is not an error.
+        if (r.status === 503 && (await r.clone().json().catch(() => ({})))?.reason === 'not_configured') return EMPTY;
         if (!r.ok) throw new Error(String(r.status));
         return (await r.json()) as CatalogPayload;
       })

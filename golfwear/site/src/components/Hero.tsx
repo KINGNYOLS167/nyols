@@ -118,12 +118,14 @@ export function Hero() {
             </div>
           </div>
           {s.rating !== null && (
-            <dl className="hero-rise grid max-w-md grid-cols-3 gap-6 border-t border-ivory/20 pt-5 md:order-1 md:col-span-5">
+            <div className="hero-rise max-w-md border-t border-ivory/20 pt-5 md:order-1 md:col-span-5">
+            <dl className="grid grid-cols-3 gap-6">
               <div><dt className="t-micro text-mist first-letter:uppercase">{t('heroRating')}</dt><dd className="tnum mt-1 text-[1.5rem] font-light">{num(s.rating)}<span className="text-[0.9rem] text-mist">/5</span></dd></div>
               {s.reviews !== null && <div><dt className="t-micro text-mist first-letter:uppercase">{t('heroReviews')}</dt><dd className="tnum mt-1 text-[1.5rem] font-light">{num(s.reviews)}</dd></div>}
               {s.sold !== null && <div><dt className="t-micro text-mist first-letter:uppercase">{t('heroSold')}</dt><dd className="tnum mt-1 text-[1.5rem] font-light">{num(s.sold)}+</dd></div>}
-              {statsDate && <p className="t-micro col-span-3 -mt-3 text-mist/80">{t('heroStatsSource', { date: statsDate })}</p>}
             </dl>
+            {statsDate && <p className="t-micro mt-3 text-mist/80">{t('heroStatsSource', { date: statsDate })}</p>}
+            </div>
           )}
         </div>
       </div>

@@ -171,7 +171,7 @@ function MegaPanel({ menu, close }: { menu: Menu; close: () => void }) {
   return (
     <div className="wrap grid grid-cols-4 gap-5 py-10">
       {tiles.map((c) => (
-        <div key={c}>{card(COLLECTION_IMAGE[c], t(`col.${c}` as Key), `/collections/${c}`, counts[c] ? t('catCount', { n: num(counts[c]) }) : t(`colBlurb.${c}` as Key))}</div>
+        <div key={c}>{card(COLLECTION_IMAGE[c], t(`col.${c}` as Key), `/collections/${c}`, counts[c] ? (counts[c] === 1 ? t('catCountOne') : t('catCount', { n: num(counts[c]) })) : t(`colBlurb.${c}` as Key))}</div>
       ))}
     </div>
   );

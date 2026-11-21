@@ -62,12 +62,12 @@ function Setup({ status }: { status: Status }) {
 
 function Centered({ children }: { children: ReactNode }) {
   return (
-    <div className="contours flex min-h-[100dvh] items-center justify-center bg-pine p-4">
+    <main className="contours flex min-h-[100dvh] items-center justify-center bg-pine p-4">
       <div className="w-full max-w-[520px] rounded-[4px] bg-ivory p-7 sm:p-10">
         <Logo className="mb-8 h-7 w-auto" />
         {children}
       </div>
-    </div>
+    </main>
   );
 }
 

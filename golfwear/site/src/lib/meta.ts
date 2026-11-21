@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const SITE = 'GOLFWEAR';
 const DEFAULT_TITLE = 'GOLFWEAR | Golf apparel from Jakarta';
-const DEFAULT_DESC = 'Golf apparel from Jakarta: polos, long sleeves, trousers and accessories. Browse here, check out on Tokopedia.';
+const DEFAULT_DESC = 'Golf apparel from Jakarta. Browse here, check out on Tokopedia.';
 
 /** Page title and meta description for the current route. */
 export function usePageMeta(title?: string, description?: string) {

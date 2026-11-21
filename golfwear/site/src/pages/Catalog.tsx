@@ -58,7 +58,7 @@ export function Catalog({ collection, brandSlug }: Props) {
       />
       <div className="sticky top-[108px] z-30 border-y border-line bg-ivory/95 backdrop-blur-md">
         <div className="wrap flex min-h-[60px] items-center gap-3">
-          <button type="button" onClick={() => setDrawer(true)} className="chip lg:hidden" aria-haspopup="dialog">
+          <button type="button" onClick={() => setDrawer(true)} className={`chip lg:hidden ${status === 'ready' && base.length === 0 ? '!hidden' : ''}`} aria-haspopup="dialog">
             <svg viewBox="0 0 20 20" className="h-4 w-4" aria-hidden><path d="M3 6h14M6 10h8M8.5 14h3" stroke="currentColor" strokeWidth="1.4" /></svg>
             {t('filters')}{active.length > 0 && <span className="tnum">({active.length})</span>}
           </button>
@@ -78,9 +78,9 @@ export function Catalog({ collection, brandSlug }: Props) {
       </div>
 
       <div className="wrap grid gap-10 pb-24 pt-8 lg:grid-cols-12 lg:pt-10">
-        <aside aria-label={t('filters')} className="hidden lg:col-span-3 lg:block">
+        <aside aria-label={t('filters')} className={`hidden lg:col-span-3 ${status === 'ready' && base.length === 0 ? '' : 'lg:block'}`}>
           <div className="sticky top-[190px] max-h-[calc(100svh-210px)] overflow-y-auto pr-4" data-lenis-prevent>
-            <FilterPanel base={base} filters={filters} update={update} fixed={fixed} brands={brands} />
+            <FilterPanel group="aside" base={base} filters={filters} update={update} fixed={fixed} brands={brands} />
           </div>
         </aside>
         <div className="lg:col-span-9">
@@ -102,6 +102,7 @@ export function Catalog({ collection, brandSlug }: Props) {
             <Empty title={t('noResults')} body={t('noResultsBody')} action={<button type="button" onClick={clear} className="btn btn-forest btn-sm">{t('clearAll')}</button>} />
           ) : (
             <>
+              <h2 className="sr-only">{count}</h2>
               <ul className="grid grid-cols-2 gap-x-4 gap-y-12 md:grid-cols-3 lg:gap-x-6">
                 {results.slice(0, limit).map((p, i) => (
                   <li key={p.id}><ProductCard product={p} onQuickView={openQuick} eager={i < 3} sizes="(min-width: 1024px) 24vw, (min-width: 768px) 33vw, 50vw" /></li>
@@ -118,7 +119,7 @@ export function Catalog({ collection, brandSlug }: Props) {
         </div>
       </div>
       <FilterDrawer open={drawer} onClose={() => setDrawer(false)} count={results.length}>
-        <FilterPanel base={base} filters={filters} update={update} fixed={fixed} brands={brands} />
+        <FilterPanel group="drawer" base={base} filters={filters} update={update} fixed={fixed} brands={brands} />
       </FilterDrawer>
     </>
   );
@@ -218,7 +219,8 @@ function Check({ checked, onChange, label, count }: { checked: boolean; onChange
   );
 }
 
-function FilterPanel({ base, filters: f, update, fixed, brands }: { base: ReturnType<typeof useCatalog>['products']; filters: Filters; update: (p: Partial<Filters>) => void; fixed: Partial<Record<keyof Filters, unknown>>; brands: PublicBrand[] }) {
+/** `group` keeps the sidebar's and the drawer's radio buttons in separate groups. */
+function FilterPanel({ group, base, filters: f, update, fixed, brands }: { group: string; base: ReturnType<typeof useCatalog>['products']; filters: Filters; update: (p: Partial<Filters>) => void; fixed: Partial<Record<keyof Filters, unknown>>; brands: PublicBrand[] }) {
   const { t } = useLang();
   const toggle = (list: string[], v: string, on: boolean) => (on ? [...list, v] : list.filter((x) => x !== v));
   const brandCounts = useMemo(() => {
@@ -243,7 +245,7 @@ function FilterPanel({ base, filters: f, update, fixed, brands }: { base: Return
           <ul>
             <li>
               <label className="flex min-h-10 cursor-pointer items-center gap-3">
-                <input type="radio" name="collection" checked={!f.collection} onChange={() => update({ collection: '' })} className="h-4 w-4 accent-forest" />
+                <input type="radio" name={`collection-${group}`} checked={!f.collection} onChange={() => update({ collection: '' })} className="h-4 w-4 accent-forest" />
                 {t('filterAll')}
               </label>
             </li>
@@ -252,7 +254,7 @@ function FilterPanel({ base, filters: f, update, fixed, brands }: { base: Return
               return (
                 <li key={c}>
                   <label className={`flex min-h-10 cursor-pointer items-center gap-3 ${n ? '' : 'text-stone/60'}`}>
-                    <input type="radio" name="collection" checked={f.collection === c} onChange={() => update({ collection: c })} className="h-4 w-4 accent-forest" />
+                    <input type="radio" name={`collection-${group}`} checked={f.collection === c} onChange={() => update({ collection: c })} className="h-4 w-4 accent-forest" />
                     <span className="flex-1">{t(`col.${c}` as Key)}</span>
                     <span className="t-small tnum text-stone">{n}</span>
                   </label>
